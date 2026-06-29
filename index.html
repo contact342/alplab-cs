@@ -850,16 +850,19 @@ async function delStep(sid){
   const el=document.querySelector('[data-sid="'+sid+'"]');
   if(!el) return;
   const fc=el.closest('.flow-case')||el.closest('.flow-panel');
-  el.remove();
-  saveStepOrder(fc);
+  el.style.display='none';
+  // renumber visible steps
+  const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
+  visible.forEach((s,i)=>{
+    const num=s.querySelector('.step-num');
+    if(num) num.textContent=i+1;
+    const line=s.querySelector('.step-line');
+    if(line) line.style.display=i===visible.length-1?'none':'block';
+  });
   // persist deletion list
   const deleted=await dbGet('deleted-steps')||[];
   if(!deleted.includes(sid)) deleted.push(sid);
   await dbSet('deleted-steps', deleted);
-  // also clear step data
-  await dbSet('n:'+sid, null);
-  await dbSet('st:'+sid+':label', null);
-  await dbSet('st:'+sid+':desc', null);
 }
 
 function delCallout(btn){
@@ -958,9 +961,9 @@ async function initEditableSteps(){
   const deleted=await dbGet('deleted-steps')||[];
   document.querySelectorAll('[data-sid]').forEach(step=>{
     const sid=step.dataset.sid;
-    // hide deleted steps
+    // only remove if this specific sid is deleted
     if(deleted.includes(sid)){
-      step.remove();
+      step.style.display='none';  // hide instead of remove so DOM stays intact
       return;
     }
     ['label','desc'].forEach(role=>{
@@ -971,8 +974,16 @@ async function initEditableSteps(){
     });
     initStepEditable(step);
   });
-  // fix step numbering per flow-case
-  document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>saveStepOrder(fc));
+  // fix step numbering per flow-case (only visible steps)
+  document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>{
+    const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
+    visible.forEach((s,i)=>{
+      const num=s.querySelector('.step-num');
+      if(num) num.textContent=i+1;
+      const line=s.querySelector('.step-line');
+      if(line) line.style.display=i===visible.length-1?'none':'block';
+    });
+  });
 }
 </script>
 </body>
