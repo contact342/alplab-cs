@@ -177,19 +177,7 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 <body>
 <div class="sb-overlay" id="sbo" onclick="closeSb()"></div>
 <div class="lb" id="lb" onclick="closeLb()"><img id="lbimg" src="" alt=""></div>
-<div class="ned-toolbar" id="ned-toolbar">
-  <button class="ned-tb-btn" title="굵게" onclick="fmt('bold')"><b>B</b></button>
-  <button class="ned-tb-btn" title="기울기" onclick="fmt('italic')"><i>I</i></button>
-  <button class="ned-tb-btn" title="밑줄" onclick="fmt('underline')" style="text-decoration:underline">U</button>
-  <button class="ned-tb-btn" title="취소선" onclick="fmt('strikeThrough')" style="text-decoration:line-through">S</button>
-  <div class="ned-tb-sep"></div>
-  <button class="ned-tb-btn" title="제목1" onclick="fmtBlock('h1')" style="font-size:11px">H1</button>
-  <button class="ned-tb-btn" title="제목2" onclick="fmtBlock('h2')" style="font-size:11px">H2</button>
-  <button class="ned-tb-btn" title="본문으로" onclick="fmtBlock('div')" style="font-size:11px">T</button>
-  <div class="ned-tb-sep"></div>
-  <button class="ned-tb-btn ned-tb-emoji" title="이모지" onclick="toggleEmoji(event)">😊</button>
-  <button class="ned-tb-btn" title="토글 블록" onclick="insertToggle()" style="font-size:11px">▶토글</button>
-</div>
+<div class="slash-menu" id="slash-menu"><div class="slash-menu-title">명령어 선택</div></div>
 <div class="emoji-picker" id="emoji-picker">
   <input class="emoji-search" type="text" placeholder="이모지 검색..." oninput="filterEmoji(this.value)" id="emoji-search">
   <div class="emoji-grid" id="emoji-grid"></div>
