@@ -955,25 +955,24 @@ function initCallouts(){
     });
   });
 }
-async function initEditableSteps(){
-  // load each step's hidden state individually
-  const steps=[...document.querySelectorAll('[data-sid]')];
-  await Promise.all(steps.map(async step=>{
+function initEditableSteps(){
+  document.querySelectorAll('[data-sid]').forEach(step=>{
     const sid=step.dataset.sid;
-    const hidden=await dbGet('hidden:'+sid);
-    if(hidden){
-      step.style.display='none';
-      return;
-    }
-    ['label','desc'].forEach(role=>{
-      const el=step.querySelector('.step-'+role);
-      if(!el) return;
-      const key='st:'+sid+':'+role;
-      dbGet(key).then(val=>{ if(val) el.textContent=val; });
+    // check hidden state
+    dbGet('hidden:'+sid).then(hidden=>{
+      if(hidden){ step.style.display='none'; renumberAll(); return; }
+      // load saved label/desc
+      ['label','desc'].forEach(role=>{
+        const el=step.querySelector('.step-'+role);
+        if(!el) return;
+        dbGet('st:'+sid+':'+role).then(val=>{ if(val) el.textContent=val; });
+      });
+      initStepEditable(step);
     });
-    initStepEditable(step);
-  }));
-  // fix step numbering per flow-case (only visible steps)
+  });
+  renumberAll();
+}
+function renumberAll(){
   document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>{
     const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
     visible.forEach((s,i)=>{
