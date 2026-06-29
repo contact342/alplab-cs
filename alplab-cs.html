@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알프랩 CS 매뉴얼</title>
+<style>
+:root{--bg:#F7F6F3;--sur:#FFF;--sur2:#F0EEE9;--bd:#E2DED7;--bds:#C8C3BB;--tx:#1A1917;--tx2:#5C5A55;--tx3:#9A9790;--ac:#2D5BE3;--acb:#EEF2FD;--act:#1A3BAA;--tl:#0A7055;--tlb:#E6F5F0;--am:#8A4F00;--amb:#FFF3E0;--co:#A3320A;--cob:#FDF0EB;--ok:#0A7055;--okb:#E6F5F0;--r:10px;--rs:6px}
+@media(prefers-color-scheme:dark){:root{--bg:#141412;--sur:#1E1D1B;--sur2:#252422;--bd:#2E2C29;--bds:#3D3B37;--tx:#F0EDE8;--tx2:#A8A49E;--tx3:#6B6862;--ac:#5B7FEF;--acb:#1A2240;--act:#9BB3F7;--tl:#3EC49A;--tlb:#0A2A20;--am:#F0A030;--amb:#2A1A00;--co:#F07050;--cob:#2A1008;--ok:#3EC49A;--okb:#0A2A20}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.6;min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;flex-shrink:0;background:var(--sur);border-right:1px solid var(--bd);padding:24px 0;position:sticky;top:0;height:100vh;overflow-y:auto}
+.main{flex:1;padding:32px 40px;max-width:900px}
+.logo{padding:0 20px 24px;border-bottom:1px solid var(--bd);margin-bottom:16px}
+.logo-mark{font-size:11px;font-weight:600;letter-spacing:.12em;color:var(--tx3);text-transform:uppercase}
+.logo-name{font-size:16px;font-weight:700;margin-top:4px}
+.nav-section{padding:0 12px;margin-bottom:8px}
+.nav-label{font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;padding:8px 8px 6px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:var(--rs);cursor:pointer;font-size:13px;color:var(--tx2);transition:all .12s}
+.nav-item:hover{background:var(--sur2);color:var(--tx)}
+.nav-item.active{background:var(--acb);color:var(--act);font-weight:500}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.5;flex-shrink:0}
+.nav-item.active .nav-dot{opacity:1}
+.page-header{margin-bottom:28px}
+.page-eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);margin-bottom:6px}
+.page-title{font-size:22px;font-weight:700;line-height:1.3}
+.page-desc{font-size:13px;color:var(--tx2);margin-top:6px}
+.flow-panel{display:none}.flow-panel.active{display:block}
+.case-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.case-chip{padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid var(--bd);background:var(--sur2);color:var(--tx2);transition:all .12s}
+.case-chip:hover{border-color:var(--bds);color:var(--tx)}
+.case-chip.active{background:var(--sur);border-color:var(--bds);color:var(--tx);font-weight:500}
+.flow-case{display:none}.flow-case.active{display:block}
+.steps{padding:4px 0}
+.step{display:flex;gap:14px}
+.step-spine{display:flex;flex-direction:column;align-items:center}
+.step-num{width:30px;height:30px;border-radius:50%;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-line{width:1px;flex:1;min-height:10px;background:var(--bd);margin:3px 0}
+.step:last-child .step-line{display:none}
+.step-body{padding-bottom:20px;padding-top:4px;flex:1;min-width:0}
+.step-label{font-size:13px;font-weight:600}
+.step-desc{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.5}
+.step.gray .step-num{background:var(--sur2);color:var(--tx2)}
+.step.blue .step-num{background:var(--acb);color:var(--act)}
+.step.teal .step-num{background:var(--tlb);color:var(--tl)}
+.step.amber .step-num{background:var(--amb);color:var(--am)}
+.step.coral .step-num{background:var(--cob);color:var(--co)}
+.callout{border-radius:var(--r);padding:12px 16px;font-size:12px;line-height:1.7;margin-top:4px}
+.callout.warn{border-left:3px solid var(--am);background:var(--amb);color:var(--am)}
+.callout.info{border-left:3px solid var(--ac);background:var(--acb);color:var(--act)}
+.search-wrap{position:relative;margin-bottom:14px}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--tx3);pointer-events:none}
+.search-input{width:100%;padding:10px 14px 10px 36px;border-radius:var(--r);border:1px solid var(--bd);background:var(--sur);color:var(--tx);font-size:13px;outline:none;transition:border-color .12s;font-family:inherit}
+.search-input:focus{border-color:var(--ac)}
+.cat-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.cat-btn{padding:5px 14px;border-radius:20px;font-size:12px;cursor:pointer;border:1px solid var(--bd);background:transparent;color:var(--tx2);transition:all .12s;font-family:inherit}
+.cat-btn:hover{border-color:var(--bds);color:var(--tx)}
+.cat-btn.active{background:var(--acb);color:var(--act);border-color:var(--acb);font-weight:500}
+.tmpl-list{display:flex;flex-direction:column;gap:8px}
+.tmpl-card{border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;background:var(--sur);transition:border-color .12s}
+.tmpl-card:hover{border-color:var(--bds)}
+.tmpl-card.open{border-color:var(--bds)}
+.tmpl-head{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;user-select:none}
+.tmpl-code{font-size:11px;font-weight:600;color:var(--act);background:var(--acb);padding:2px 8px;border-radius:4px;flex-shrink:0}
+.tmpl-title{font-size:13px;font-weight:500;flex:1}
+.tmpl-cat{font-size:11px;color:var(--tx3);flex-shrink:0}
+.tmpl-arrow{color:var(--tx3);font-size:11px;transition:transform .2s;flex-shrink:0}
+.tmpl-card.open .tmpl-arrow{transform:rotate(180deg)}
+.tmpl-body{display:none;padding:0 16px 16px}
+.tmpl-card.open .tmpl-body{display:block}
+.tmpl-text{white-space:pre-wrap;font-size:13px;line-height:1.9;background:var(--sur2);border:1px solid var(--bd);border-radius:var(--rs);padding:14px 16px;font-family:inherit;margin-bottom:12px}
+.copy-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs);border:1px solid var(--bd);background:var(--sur2);color:var(--tx2);font-size:12px;cursor:pointer;transition:all .12s;font-family:inherit;font-weight:500;margin-bottom:14px}
+.copy-btn:hover{background:var(--sur);color:var(--tx);border-color:var(--bds)}
+.copy-btn.copied{background:var(--okb);color:var(--ok);border-color:var(--okb)}
+.no-result{text-align:center;color:var(--tx3);font-size:13px;padding:48px 0}
+.section{display:none}.section.active{display:block}
+.topbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-bottom:24px}
+.tbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs);font-size:12px;cursor:pointer;font-family:inherit;font-weight:500;border:1px solid var(--bd);background:var(--sur2);color:var(--tx2);transition:all .12s}
+.tbtn:hover{color:var(--tx);border-color:var(--bds)}
+.tbtn.green{background:var(--tlb);color:var(--tl);border-color:var(--tlb)}
+
+/* ── NOTION EDITOR ─────────────────────────── */
+.notion-wrap{border-top:1px solid var(--bd);margin-top:10px;padding-top:10px}
+.notion-hint{font-size:11px;color:var(--tx3);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.notion-editor{
+  min-height:48px;
+  outline:none;
+  font-size:13px;
+  line-height:1.8;
+  color:var(--tx);
+  border-radius:var(--rs);
+  padding:8px;
+  transition:background .12s;
+  cursor:text;
+  word-break:break-word;
+  overflow-wrap:break-word;
+}
+.notion-editor:focus{background:var(--sur2)}
+.notion-editor:empty::before{content:'텍스트 입력 또는 스크린샷 Ctrl+V...';color:var(--tx3);pointer-events:none}
+.notion-editor img{
+  max-width:100%;
+  max-height:400px;
+  border-radius:var(--rs);
+  border:1px solid var(--bd);
+  display:block;
+  margin:6px 0;
+  cursor:zoom-in;
+  object-fit:contain;
+}
+.notion-editor img:hover{border-color:var(--bds)}
+.notion-editor img.selected{outline:2px solid var(--ac);border-color:var(--ac)}
+/* drop overlay */
+.drop-active{background:var(--acb)!important;outline:2px dashed var(--ac)}
+
+/* lightbox */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
+.lb.open{display:flex}
+.lb img{max-width:92vw;max-height:90vh;border-radius:var(--r);object-fit:contain}
+
+/* mobile */
+.mob-hdr{display:none;position:sticky;top:0;z-index:100;background:var(--sur);border-bottom:1px solid var(--bd);padding:14px 16px;align-items:center;justify-content:space-between}
+.mob-title{font-size:15px;font-weight:700}
+.hamburger{background:none;border:none;cursor:pointer;color:var(--tx);display:flex;flex-direction:column;gap:4px;padding:2px 4px}
+.hamburger span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
+.sb-overlay.open{display:block}
+@media(max-width:700px){
+  .sidebar{position:fixed;left:-240px;top:0;z-index:300;transition:left .2s;height:100dvh;width:240px}
+  .sidebar.open{left:0}
+  .mob-hdr{display:flex}
+  .main{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="sb-overlay" id="sbo" onclick="closeSb()"></div>
+<div class="lb" id="lb" onclick="closeLb()"><img id="lbimg" src="" alt=""></div>
+
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="logo"><div class="logo-mark">Alp.Lab Korea</div><div class="logo-name">CS 매뉴얼</div></div>
+  <div class="nav-section">
+    <div class="nav-label">처리 플로우</div>
+    <div class="nav-item active" onclick="goTo('flow','cafe24',this)"><span class="nav-dot"></span>카페24</div>
+    <div class="nav-item" onclick="goTo('flow','naver',this)"><span class="nav-dot"></span>네이버 스마트스토어</div>
+    <div class="nav-item" onclick="goTo('flow','naverpay',this)"><span class="nav-dot"></span>네이버 페이</div>
+    <div class="nav-item" onclick="goTo('flow','coupang',this)"><span class="nav-dot"></span>쿠팡</div>
+    <div class="nav-item" onclick="goTo('flow','kakao',this)"><span class="nav-dot"></span>카카오채널</div>
+    <div class="nav-item" onclick="goTo('flow','phone',this)"><span class="nav-dot"></span>고객 전화</div>
+  </div>
+  <div class="nav-section" style="margin-top:8px">
+    <div class="nav-label">답변 템플릿</div>
+    <div class="nav-item" onclick="goTo('tmpl','all',this)"><span class="nav-dot"></span>전체 보기</div>
+    <div class="nav-item" onclick="goTo('tmpl','A',this)"><span class="nav-dot"></span>A · 사용법</div>
+    <div class="nav-item" onclick="goTo('tmpl','B',this)"><span class="nav-dot"></span>B · 제품 관련</div>
+    <div class="nav-item" onclick="goTo('tmpl','C',this)"><span class="nav-dot"></span>C · 주문/배송</div>
+    <div class="nav-item" onclick="goTo('tmpl','D',this)"><span class="nav-dot"></span>D · 결제/환불</div>
+    <div class="nav-item" onclick="goTo('tmpl','E',this)"><span class="nav-dot"></span>E · 기타</div>
+  </div>
+</aside>
+
+<div style="flex:1;min-width:0">
+<div class="mob-hdr">
+  <div class="mob-title">알프랩 CS 매뉴얼</div>
+  <button class="hamburger" onclick="openSb()"><span></span><span></span><span></span></button>
+</div>
+<main class="main">
+  <div class="topbar">
+    <button class="tbtn" onclick="document.getElementById('imp').click()">📂 불러오기</button>
+    <input type="file" id="imp" accept=".json" style="display:none" onchange="importData(event)">
+    <button class="tbtn green" onclick="exportData()">💾 내보내기</button>
+  </div>
+
+  <!-- FLOW -->
+  <div class="section active" id="sec-flow">
+    <div class="page-header">
+      <div class="page-eyebrow">처리 플로우</div>
+      <div class="page-title" id="flow-title">카페24</div>
+      <div class="page-desc" id="flow-desc">채널별 케이스 유형을 선택하고 단계별로 처리하세요</div>
+    </div>
+
+    <div class="flow-panel active" id="fp-cafe24">
+      <div class="case-row">
+        <div class="case-chip active" onclick="showCase('cafe24','cancel',this)">🔵 구매 취소</div>
+        <div class="case-chip" onclick="showCase('cafe24','return',this)">🟡 반품</div>
+        <div class="case-chip" onclick="showCase('cafe24','refund',this)">🔴 환불</div>
+        <div class="case-chip" onclick="showCase('cafe24','inq',this)">💬 일반 문의</div>
+      </div>
+      <div class="flow-case active" id="cafe24-cancel">
+        <div class="steps">
+          <div class="step gray" data-sid="c24ca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step blue" data-sid="c24ca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">구매 취소 승인</div><div class="step-desc">카페24 관리자 › 주문관리 › 취소 승인 처리</div></div></div>
+          <div class="step teal" data-sid="c24ca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 취소 사유 전달</div></div></div>
+          <div class="step gray" data-sid="c24ca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">취소 완료 안내 → 템플릿 C-02 사용</div></div></div>
+        </div>
+        <div class="callout warn">⚠ 출고 이후 접수된 건은 반품 플로우로 전환</div>
+      </div>
+      <div class="flow-case" id="cafe24-return">
+        <div class="steps">
+          <div class="step gray" data-sid="c24re1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step amber" data-sid="c24re2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">환불 조건 확인</div><div class="step-desc">도착일 14일 이내 / 절반 이상 잔여 / 공식 판매처 구매 여부</div></div></div>
+          <div class="step amber" data-sid="c24re3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">반품 관리 및 반품 승인</div><div class="step-desc">카페24 관리자 › 주문관리 › 반품 승인</div></div></div>
+          <div class="step amber" data-sid="c24re4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">이지어드민에서 회수 신청</div><div class="step-desc">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
+          <div class="step teal" data-sid="c24re5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부</div></div></div>
+          <div class="step gray" data-sid="c24re6"><div class="step-spine"><div class="step-num">6</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">반품 안내 + 배송비 안내 → 템플릿 D-02 사용</div></div></div>
+        </div>
+        <div class="callout warn">⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수</div>
+      </div>
+      <div class="flow-case" id="cafe24-refund">
+        <div class="steps">
+          <div class="step gray" data-sid="c24rf1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step coral" data-sid="c24rf2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">환불 조건 확인</div><div class="step-desc">100% 환불 규정 충족 여부 확인 → 템플릿 D-01 참고</div></div></div>
+          <div class="step coral" data-sid="c24rf3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">이지어드민에서 회수 신청</div><div class="step-desc">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
+          <div class="step teal" data-sid="c24rf4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 사유 전달</div></div></div>
+          <div class="step gray" data-sid="c24rf5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">환불 예정 안내 → 템플릿 D-03 사용</div></div></div>
+        </div>
+        <div class="callout warn">⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내</div>
+      </div>
+      <div class="flow-case" id="cafe24-inq">
+        <div class="steps">
+          <div class="step gray" data-sid="c24iq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악</div><div class="step-desc">답변 템플릿 메뉴에서 해당 유형 검색</div></div></div>
+          <div class="step blue" data-sid="c24iq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">답변 템플릿 복붙</div><div class="step-desc">[ ] 표시된 부분만 수정 후 발송</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-panel" id="fp-naver">
+      <div class="callout info" style="margin-bottom:16px">고객문의 탭 / 톡톡 탭 두 채널 모두 동일한 흐름으로 처리합니다</div>
+      <div class="case-row">
+        <div class="case-chip active" onclick="showCase('naver','cancel',this)">🔵 취소·반품</div>
+        <div class="case-chip" onclick="showCase('naver','inq',this)">💬 일반 문의</div>
+      </div>
+      <div class="flow-case active" id="naver-cancel">
+        <div class="steps">
+          <div class="step gray" data-sid="nvca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">스마트스토어 판매자센터 › 문의/리뷰 탭 확인</div></div></div>
+          <div class="step blue" data-sid="nvca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·반품 처리</div><div class="step-desc">판매자센터 › 취소/반품 관리에서 승인</div></div></div>
+          <div class="step teal" data-sid="nvca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달 (카페24와 동일 양식)</div></div></div>
+          <div class="step gray" data-sid="nvca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+        </div>
+      </div>
+      <div class="flow-case" id="naver-inq">
+        <div class="steps">
+          <div class="step gray" data-sid="nviq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악</div><div class="step-desc">답변 템플릿 메뉴에서 유형 검색</div></div></div>
+          <div class="step blue" data-sid="nviq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">답변 복붙</div><div class="step-desc">[ ] 표시 부분만 수정 후 발송</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-panel" id="fp-naverpay">
+      <div class="callout info" style="margin-bottom:16px">스마트스토어와 별도 채널 — 네이버 판매자센터 › 정산/결제 메뉴에서 처리</div>
+      <div class="steps">
+        <div class="step gray" data-sid="np1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">네이버 판매자센터 › 네이버페이 문의 탭</div></div></div>
+        <div class="step blue" data-sid="np2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">결제·환불 처리</div><div class="step-desc">세부 플로우 추후 작성 예정</div></div></div>
+        <div class="step teal" data-sid="np3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달</div></div></div>
+        <div class="step gray" data-sid="np4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+      </div>
+    </div>
+
+    <div class="flow-panel" id="fp-coupang">
+      <div class="callout info" style="margin-bottom:16px">쿠팡 Wing 판매자 센터에서 처리 — 세부 플로우 추후 작성 예정</div>
+      <div class="steps">
+        <div class="step gray" data-sid="cp1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">쿠팡 Wing › 고객문의 탭 확인</div></div></div>
+        <div class="step blue" data-sid="cp2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·반품·환불 처리</div><div class="step-desc">세부 플로우 추후 작성 예정</div></div></div>
+        <div class="step teal" data-sid="cp3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달</div></div></div>
+        <div class="step gray" data-sid="cp4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+      </div>
+    </div>
+
+    <div class="flow-panel" id="fp-kakao">
+      <div class="steps">
+        <div class="step gray" data-sid="kk1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">카카오 비즈니스 채널 › 채팅 탭 확인</div></div></div>
+        <div class="step blue" data-sid="kk2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악 후 답변</div><div class="step-desc">답변 템플릿에서 유형 검색 후 복붙</div></div></div>
+        <div class="step amber" data-sid="kk3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·환불 필요 시</div><div class="step-desc">카페24 또는 해당 채널 플로우로 이관</div></div></div>
+      </div>
+    </div>
+
+    <div class="flow-panel" id="fp-phone">
+      <div class="steps">
+        <div class="step gray" data-sid="ph1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">성함 / 번호 / 문의내용 확인</div><div class="step-desc">답변 어려운 경우 콜백 안내 후 내부 확인</div></div></div>
+        <div class="step blue" data-sid="ph2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">즉시 답변 or 확인 후 콜백</div><div class="step-desc">사용법·제품 관련 → 즉시 / 환불·취소 → 확인 후 콜백</div></div></div>
+        <div class="step teal" data-sid="ph3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">해당 채널 플로우로 처리</div><div class="step-desc">주문번호 확인 후 카페24 또는 해당 채널에서 처리</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATES -->
+  <div class="section" id="sec-tmpl">
+    <div class="page-header">
+      <div class="page-eyebrow">답변 템플릿</div>
+      <div class="page-title">복붙 답변 모음</div>
+      <div class="page-desc">검색하거나 카테고리를 눌러 찾은 뒤 복사하세요</div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="search" placeholder="유형 검색 (예: 환불, 부작용, 순서...)" oninput="filterTmpl()">
+    </div>
+    <div class="cat-row">
+      <button class="cat-btn active" onclick="setCat('all',this)">전체</button>
+      <button class="cat-btn" onclick="setCat('A',this)">A · 사용법</button>
+      <button class="cat-btn" onclick="setCat('B',this)">B · 제품 관련</button>
+      <button class="cat-btn" onclick="setCat('C',this)">C · 주문/배송</button>
+      <button class="cat-btn" onclick="setCat('D',this)">D · 결제/환불</button>
+      <button class="cat-btn" onclick="setCat('E',this)">E · 기타</button>
+    </div>
+    <div class="tmpl-list" id="tmpl-list"></div>
+  </div>
+</main>
+</div>
+</div>
+
+<script>
+// ── IndexedDB ──────────────────────────────────────────────
+const DB='alplab4',ST='notes';let db;
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=e=>e.target.result.createObjectStore(ST);r.onsuccess=e=>{db=e.target.result;res()};r.onerror=rej})}
+function dbGet(k){return new Promise(r=>{const req=db.transaction(ST,'readonly').objectStore(ST).get(k);req.onsuccess=()=>r(req.result??null)})}
+function dbSet(k,v){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).put(v,k);tx.oncomplete=r})}
+function dbAll(){return new Promise(r=>{const out=[];const req=db.transaction(ST,'readonly').objectStore(ST).openCursor();req.onsuccess=e=>{const c=e.target.result;if(c){out.push({k:c.key,v:c.value});c.continue()}else r(out)}})}
+function dbClear(){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).clear();tx.oncomplete=r})}
+
+// ── Notion-style editor factory ────────────────────────────
+// Stores innerHTML directly. Images embedded as <img src="data:...">
+let saveTimers={};
+
+function mountEditor(sid, container){
+  if(container.querySelector('.notion-wrap')) return; // already mounted
+  const wrap=document.createElement('div');
+  wrap.className='notion-wrap';
+  wrap.innerHTML=`<div class="notion-hint">📝 메모 · 스크린샷 Ctrl+V · 이미지 드래그 앤 드롭</div><div class="notion-editor" contenteditable="true" spellcheck="false" id="ne-${sid}"></div>`;
+  container.appendChild(wrap);
+
+  const ed=wrap.querySelector('.notion-editor');
+
+  // load saved content
+  dbGet('n:'+sid).then(html=>{ if(html) ed.innerHTML=html; bindImgClicks(ed); });
+
+  // auto-save on input
+  ed.addEventListener('input',()=>{
+    clearTimeout(saveTimers[sid]);
+    saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid, ed.innerHTML),600);
+  });
+
+  // ── paste: intercept images ──
+  ed.addEventListener('paste',e=>{
+    const items=[...(e.clipboardData?.items||[])];
+    const imgItem=items.find(i=>i.type.startsWith('image/'));
+    if(!imgItem) return; // let browser handle text paste normally
+    e.preventDefault();
+    const file=imgItem.getAsFile();
+    readAndInsertImg(ed, file, sid);
+  });
+
+  // ── drag & drop images ──
+  ed.addEventListener('dragover',e=>{e.preventDefault();ed.classList.add('drop-active')});
+  ed.addEventListener('dragleave',()=>ed.classList.remove('drop-active'));
+  ed.addEventListener('drop',e=>{
+    e.preventDefault();ed.classList.remove('drop-active');
+    const files=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/'));
+    files.forEach(f=>readAndInsertImg(ed,f,sid));
+  });
+
+  // click image → lightbox
+  ed.addEventListener('click',e=>{
+    if(e.target.tagName==='IMG') openLb(e.target.src);
+  });
+}
+
+function readAndInsertImg(ed, file, sid){
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    const img=document.createElement('img');
+    img.src=ev.target.result;
+    // insert at cursor or at end
+    const sel=window.getSelection();
+    if(sel&&sel.rangeCount&&ed.contains(sel.anchorNode)){
+      const range=sel.getRangeAt(0);
+      range.collapse(false);
+      range.insertNode(img);
+      // move cursor after image
+      range.setStartAfter(img);range.collapse(true);
+      sel.removeAllRanges();sel.addRange(range);
+    } else {
+      ed.appendChild(img);
+    }
+    clearTimeout(saveTimers[sid]);
+    saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
+  };
+  reader.readAsDataURL(file);
+}
+
+function bindImgClicks(ed){
+  ed.querySelectorAll('img').forEach(img=>{
+    img.style.cursor='zoom-in';
+  });
+}
+
+// ── Lightbox ───────────────────────────────────────────────
+function openLb(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('open')}
+function closeLb(){document.getElementById('lb').classList.remove('open')}
+
+// ── Export / Import ────────────────────────────────────────
+async function exportData(){
+  const all=await dbAll();
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({v:4,data:all}));
+  a.download='alplab-cs-'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+}
+async function importData(e){
+  const f=e.target.files[0];if(!f)return;
+  try{
+    const txt=await f.text(),p=JSON.parse(txt);
+    if(p.v!==4){alert('이 파일은 이전 버전입니다. 최신 버전으로 내보내기 후 사용해주세요.');return}
+    await dbClear();
+    for(const entry of p.data) await dbSet(entry.k,entry.v);
+    // reload all editors
+    document.querySelectorAll('.notion-wrap').forEach(w=>w.remove());
+    initAllEditors();
+    document.querySelectorAll('.tmpl-card.open').forEach(c=>{
+      const code=c.id.replace('card-','');
+      const tbody=document.getElementById('tbody-'+code);
+      if(tbody) mountEditor('t-'+code, tbody);
+    });
+    alert('✅ 불러오기 완료!');
+  }catch(err){alert('파일을 읽을 수 없습니다.')}
+  e.target.value='';
+}
+
+// ── Nav ────────────────────────────────────────────────────
+const FT={cafe24:['카페24','채널별 케이스 유형을 선택하고 단계별로 처리하세요'],naver:['네이버 스마트스토어','고객문의 탭 / 톡톡 탭 공통 플로우'],naverpay:['네이버 페이','판매자센터 별도 채널에서 처리'],coupang:['쿠팡','쿠팡 Wing 판매자 센터에서 처리'],kakao:['카카오채널','채팅 탭에서 확인 후 답변'],phone:['고객 전화','콜백 or 즉시 답변 후 채널 플로우로 처리']};
+function goTo(type,id,el){closeSb();document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');if(type==='flow'){document.getElementById('sec-flow').classList.add('active');document.getElementById('sec-tmpl').classList.remove('active');document.querySelectorAll('.flow-panel').forEach(p=>p.classList.remove('active'));document.getElementById('fp-'+id).classList.add('active');document.getElementById('flow-title').textContent=FT[id][0];document.getElementById('flow-desc').textContent=FT[id][1];}else{document.getElementById('sec-tmpl').classList.add('active');document.getElementById('sec-flow').classList.remove('active');setCatById(id);}window.scrollTo(0,0);}
+function showCase(ch,cs,el){const fp=document.getElementById('fp-'+ch);fp.querySelectorAll('.case-chip').forEach(c=>c.classList.remove('active'));fp.querySelectorAll('.flow-case').forEach(f=>f.classList.remove('active'));el.classList.add('active');document.getElementById(ch+'-'+cs).classList.add('active');}
+
+// ── Templates ──────────────────────────────────────────────
+let curCat='all';
+function setCat(cat,el){curCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');filterTmpl();}
+function setCatById(cat){curCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active',b.textContent.startsWith(cat==='all'?'전체':cat)));filterTmpl();}
+function filterTmpl(){const q=(document.getElementById('search').value||'').trim().toLowerCase();let list=T;if(curCat!=='all')list=list.filter(t=>t.cat===curCat);if(q)list=list.filter(t=>(t.title+t.kw+t.code).toLowerCase().includes(q));renderTmpl(list);}
+
+const T=[
+  {code:'A-01',cat:'A',title:'바르는 순서',kw:'순서 토너 로션 크림',text:'고객님 안녕하세요\n스킨토너 → 알프스 앰플 → 로션/크림\n순으로 발라주시는 걸 권장드립니다.\n\n감사합니다'},
+  {code:'A-02',cat:'A',title:'아침/저녁 사용 (밤/낮)',kw:'아침 저녁 낮 밤 선크림',text:'고객님 안녕하세요\n알프스 앰플은 아침/저녁 모두 사용 가능하지만\n아침에 바르는 경우 선크림을 같이 발라주시는 걸 권장드립니다.\n\n감사합니다'},
+  {code:'A-03',cat:'A',title:'냉장보관',kw:'냉장 보관 냉장고',text:'고객님 안녕하세요\n앰플의 경우 냉장 보관을 권장드립니다.\n\n감사합니다'},
+  {code:'A-04',cat:'A',title:'앰플 vs 크림 차이',kw:'앰플 크림 차이 비교',text:'안녕하세요, 고객님. 문의 주셔서 감사합니다.\n\n앰플, 크림 모두 성분은 유사하나\n\n앰플은 비교적 가볍고 흡수가 빠른 제형으로, 피부에 유효 성분을 집중적으로 공급하는 데 초점을 둔 제품입니다. 세안 후 토너 다음 단계에서 사용하시면 좋습니다.\n\n반면 크림은 앰플보다 보습감과 밀폐감이 더 있는 제형으로, 앞 단계에서 공급한 수분과 영양을 피부에 오래 머물도록 도와주는 마무리 보습 제품에 가깝습니다.\n\n두 제품 함께 사용 시 토너 → 앰플 → 크림 순서로 사용해 주시면 됩니다.\n\n감사합니다'},
+  {code:'A-05',cat:'A',title:'뱀톡스 병행사용',kw:'뱀톡스 병행 같이 함께',text:'고객님 안녕하세요\n뱀톡스, 알프스 앰플 병행 사용 가능하지만\n\n(1) 격일 사용 또는 (2) 오전: 뱀톡스 앰플 / 저녁: 알프스 앰플\n\n사용 권장드립니다.\n\n감사합니다'},
+  {code:'B-01',cat:'B',title:'효과 / 임상',kw:'효과 임상 멜라닌 기간 얼마나',text:'고객님 안녕하세요.\n알프스 앰플은 2주 사용 멜라닌 개선 임상 테스트를 완료한 제품이지만\n개인차가 있는 점 참고 부탁드립니다.\n\n좋은 제품으로 보답드리겠습니다.\n\n감사합니다'},
+  {code:'B-02',cat:'B',title:'변색 (노란색)',kw:'변색 노랗다 노란색 비타민c',text:'고객님 안녕하세요\n알프스 앰플은 비타민C가 함유된 성분으로\n비타민C 함유량이 약간 많아진 경우 노란색으로 변색되는 경우가 있었습니다.\n\n사용감이나 효능에는 문제가 없으니 안심하고 사용하셔도 좋습니다.\n\n감사합니다'},
+  {code:'B-03',cat:'B',title:'부작용 / 트러블',kw:'부작용 트러블 자극 가렵다 따갑다',text:'고객님 안녕하세요\n알프스 앰플은 민감성 테스트 완료한 제품이지만\n부작용 발생 시 1~2주 사용 중지를 권장드립니다.\n이후 소량만 발라주면서 다시 체크하시면 좋습니다.\n\n감사합니다'},
+  {code:'B-04',cat:'B',title:'임산부 / 임신',kw:'임산부 임신 모유 수유',text:'고객님 안녕하세요\n알프스 앰플은 민감성 테스트를 완료한 제품이지만\n임산부의 경우 전문의 상담 후 사용하시는 걸 권장드립니다.\n\n감사합니다'},
+  {code:'B-05',cat:'B',title:'함량 변경 문의',kw:'함량 성분 변경 낮아지다',text:'고객님 안녕하세요\n경쟁사들의 반발로 인해 함량이 낮아질 가능성에 대해서\n내부적으로 논의 중이나 시점에 대해서는 아직 100% 확정지어 얘기드릴 수 없는 점\n참고 부탁드립니다.\n\n감사합니다'},
+  {code:'C-01',cat:'C',title:'발송 / 배송 문의',kw:'배송 발송 출고 언제 도착',text:'고객님 안녕하세요\n\n상세페이지에 나와있듯이\n알프스앰플은 현재 완판으로 인한 예약판매 중으로\n\n[ 주문 시점 ] 주문 건: [ 출고 예정일 ]부터 순차출고\n되는 점 참고 부탁드립니다.\n\n감사합니다'},
+  {code:'C-02',cat:'C',title:'주문 취소 완료',kw:'취소 주문취소 취소완료',text:'고객님 안녕하세요\n주문 취소 완료하였습니다.\n\n감사합니다'},
+  {code:'D-01',cat:'D',title:'환불 규정 안내 (간단)',kw:'환불 규정 FAQ',text:'고객님 안녕하세요\n환불 규정은 메뉴 › 고객센터 › FAQ에서 자세한 내용 확인하실 수 있습니다.\n\n감사합니다'},
+  {code:'D-02',cat:'D',title:'환불 규정 안내 (상세)',kw:'환불 규정 상세 조건 14일 배송비',text:'고객님 안녕하세요\n\n100% 환불 규정은 아래와 같이 진행됩니다.\n\n- 배송 도착일 기준 14일 이내\n- 상품 용량의 절반 이상 남아있어야 함\n- 왕복 6,000원의 배송비는 고객 부담\n\n아래 해당하는 경우 100% 환불이 불가합니다.\n- 배송 도착일 기준 14일 이상 경과한 경우\n- 1개 이상의 제품 사용 후 의도적으로 남은 제품을 훼손시켰을 경우\n- 공식판매처가 아닌 다른 판매처에서 구매하신 경우\n\n※ 환불 배송비 직접 부담\n※ 개봉된 제품 포함 전 제품 회수 후, 물류센터 입고 완료 후 100% 환불 진행\n※ 일부 이벤트 상품의 경우 100% 안심 환불이 적용되지 않습니다.\n\n감사합니다'},
+  {code:'D-03',cat:'D',title:'환불 처리 완료 안내',kw:'환불 완료 영업일 입금',text:'고객님 안녕하세요\n영업일 기준 3~5일 내로 환불 예정입니다.\n\n감사합니다'},
+  {code:'D-04',cat:'D',title:'300원 결제 금액 차이',kw:'300원 결제 차이 에스크로 이니시스',text:'고객님 안녕하세요\n이니시스 에스크로 결제를 이용하신 경우\n이니시스에서 소비자 거래 보호를 명목으로 300원을 추가하여 가져가게 되는 점 참고 부탁드립니다.\n\n감사합니다'},
+  {code:'E-01',cat:'E',title:'일반 문의 (정보 수집)',kw:'일반 성함 번호 전화 기타',text:'고객님 안녕하세요\n고객님 성함 / 휴대폰 번호 / 문의 내용 남겨주시면\n확인 후 내용 전달드리겠습니다.\n\n감사합니다'},
+];
+const CL={A:'사용법',B:'제품 관련',C:'주문/배송',D:'결제/환불',E:'기타'};
+
+function renderTmpl(list){
+  const el=document.getElementById('tmpl-list');
+  if(!list.length){el.innerHTML='<div class="no-result">검색 결과가 없습니다</div>';return}
+  el.innerHTML=list.map(t=>`
+    <div class="tmpl-card" id="card-${t.code}">
+      <div class="tmpl-head" onclick="togCard('${t.code}')">
+        <span class="tmpl-code">${t.code}</span>
+        <span class="tmpl-title">${t.title}</span>
+        <span class="tmpl-cat">${CL[t.cat]}</span>
+        <span class="tmpl-arrow">▼</span>
+      </div>
+      <div class="tmpl-body" id="tbody-${t.code}">
+        <div class="tmpl-text">${esc(t.text)}</div>
+        <button class="copy-btn" onclick="cpT('${t.code}',this)">📋 복사</button>
+      </div>
+    </div>`).join('');
+}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function togCard(code){
+  const card=document.getElementById('card-'+code);
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    const tbody=document.getElementById('tbody-'+code);
+    mountEditor('t-'+code, tbody);
+  }
+}
+function cpT(code,btn){
+  const raw=T.find(t=>t.code===code).text;
+  navigator.clipboard.writeText(raw).then(()=>{btn.textContent='✓ 복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied')},2000)});
+}
+
+// ── Init step editors ──────────────────────────────────────
+function initAllEditors(){
+  document.querySelectorAll('[data-sid]').forEach(el=>{
+    const sid=el.dataset.sid;
+    const body=el.querySelector('.step-body');
+    if(body) mountEditor(sid,body);
+  });
+}
+
+function openSb(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbo').classList.add('open')}
+function closeSb(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbo').classList.remove('open')}
+
+openDB().then(()=>{renderTmpl(T);initAllEditors();});
+</script>
+</body>
+</html>
