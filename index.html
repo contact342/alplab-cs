@@ -109,12 +109,14 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .notion-editor h2{font-size:16px;font-weight:600;margin:4px 0 2px}
 .notion-editor ul{padding-left:20px;margin:2px 0}
 .notion-editor ul li{margin:1px 0;line-height:1.8}
-.notion-editor details{margin:4px 0;border-radius:var(--rs)}
-.notion-editor details summary{cursor:pointer;font-weight:500;padding:4px 6px;border-radius:var(--rs);list-style:none;display:flex;align-items:center;gap:6px;user-select:none}
-.notion-editor details summary::before{content:'▶';font-size:10px;color:var(--tx3);transition:transform .15s;flex-shrink:0}
-.notion-editor details[open] summary::before{transform:rotate(90deg)}
-.notion-editor details summary:hover{background:var(--sur2)}
-.notion-editor details>div{padding:4px 4px 4px 22px;min-height:20px;outline:none}
+.notion-editor .toggle-block{margin:4px 0;border-radius:var(--rs)}
+.notion-editor .toggle-block{margin:4px 0}
+.notion-editor .toggle-header{font-weight:500;padding:4px 6px;border-radius:var(--rs);display:flex;align-items:center;gap:6px}
+.notion-editor .toggle-arrow{cursor:pointer;font-size:11px;color:var(--tx3);transition:transform .15s;flex-shrink:0;display:inline-block;user-select:none;padding:2px 4px;border-radius:3px}
+.notion-editor .toggle-arrow:hover{background:var(--sur2)}
+.notion-editor .toggle-arrow.open{transform:rotate(90deg)}
+.notion-editor .toggle-title{flex:1;outline:none}
+.notion-editor .toggle-content{padding:4px 4px 4px 24px;min-height:20px;outline:none;display:none}
 .drop-active{background:var(--acb)!important;outline:2px dashed var(--ac)}
 /* slash menu */
 .slash-menu{position:fixed;background:var(--sur);border:1px solid var(--bd);border-radius:var(--r);box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:9100;min-width:220px;overflow:hidden;display:none}
@@ -481,6 +483,33 @@ async function delCallout(fcId,wrap){
 let saveTimers={};
 let slashActive=false,slashRange=null,slashQuery='',slashIdx=0,emojiRange=null;
 
+function insertImgAt(target,src,sid){
+  const img=document.createElement('img');img.src=src;
+  const ed=document.getElementById('ne-'+sid);
+  const sel=window.getSelection();
+  if(sel&&sel.rangeCount&&ed&&ed.contains(sel.anchorNode)){
+    const r=sel.getRangeAt(0);r.collapse(false);r.insertNode(img);
+    r.setStartAfter(img);r.collapse(true);sel.removeAllRanges();sel.addRange(r);
+  } else { target.appendChild(img); }
+  clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed?ed.innerHTML:target.closest('.notion-editor')?.innerHTML||''),600);
+}
+function bindDrop(target,sid){
+  if(target._dd) return;
+  target._dd=true;
+  target.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();target.style.outline='2px dashed var(--ac)';target.style.background='var(--acb)';});
+  target.addEventListener('dragleave',()=>{target.style.outline='';target.style.background='';});
+  target.addEventListener('drop',e=>{
+    e.preventDefault();e.stopPropagation();
+    target.style.outline='';target.style.background='';
+    const s=sid||target.closest('.notion-editor')?.id?.replace('ne-','');
+    [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{
+      const reader=new FileReader();
+      reader.onload=ev=>insertImgAt(target,ev.target.result,s);
+      reader.readAsDataURL(f);
+    });
+  });
+}
+
 function mountEditor(sid,container){
   if(container.querySelector('.notion-wrap')) return;
   const wrap=document.createElement('div');wrap.className='notion-wrap';
@@ -511,38 +540,13 @@ function mountEditor(sid,container){
     reader.readAsDataURL(file);
   });
 
-  function insertImg(target,src){
-    const img=document.createElement('img');img.src=src;
-    const sel=window.getSelection();
-    if(sel&&sel.rangeCount&&ed.contains(sel.anchorNode)){
-      const r=sel.getRangeAt(0);r.collapse(false);r.insertNode(img);
-      r.setStartAfter(img);r.collapse(true);sel.removeAllRanges();sel.addRange(r);
-    } else { target.appendChild(img); }
-    clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
-  }
-  function bindDrop(target){
-    if(target._dd) return;
-    target._dd=true;
-    target.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();target.style.outline='2px dashed var(--ac)';target.style.background='var(--acb)';});
-    target.addEventListener('dragleave',()=>{target.style.outline='';target.style.background='';});
-    target.addEventListener('drop',e=>{
-      e.preventDefault();e.stopPropagation();
-      target.style.outline='';target.style.background='';
-      [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{
-        const reader=new FileReader();
-        reader.onload=ev=>insertImg(target,ev.target.result);
-        reader.readAsDataURL(f);
-      });
-    });
-  }
-  bindDrop(ed);
-  // bind drop inside toggle divs when they open
-  ed.addEventListener('toggle',e=>{
-    if(e.target.tagName==='DETAILS'&&e.target.open){
-      const inner=e.target.querySelector('[contenteditable]');
-      if(inner){inner.style.minHeight='40px';bindDrop(inner);}
-    }
-  },true);
+
+  bindDrop(ed,sid);
+  // bind drop inside existing toggle-content divs
+  ed.querySelectorAll('.toggle-content').forEach(div=>{
+    div.contentEditable='true';
+    bindDrop(div,sid);
+  });
 
   // image: click = zoom, drag = reorder
   let dragSrcImg=null;
@@ -686,16 +690,31 @@ function runSlash(action){
     try{r.setStart(r.startContainer,Math.max(0,r.startOffset-(1+slashQuery.length)));}catch(e){}
     sel.addRange(r);document.execCommand('delete',false,null);
   }
-  if(action==='h1') document.execCommand('formatBlock',false,'h1');
-  else if(action==='h2') document.execCommand('formatBlock',false,'h2');
-  else if(action==='p') document.execCommand('formatBlock',false,'p');
+  if(action==='h1'||action==='h2'||action==='p'){
+    document.execCommand('formatBlock',false,action==='p'?'p':action);
+  }
   else if(action==='bold') document.execCommand('bold',false,null);
   else if(action==='italic') document.execCommand('italic',false,null);
   else if(action==='underline') document.execCommand('underline',false,null);
   else if(action==='hr') document.execCommand('insertHTML',false,'<hr style="border:none;border-top:1px solid var(--bd);margin:8px 0"><br>');
   else if(action==='toggle'){
-    document.execCommand('insertHTML',false,
-      '<details><summary contenteditable="true">토글 제목을 입력하세요</summary><div contenteditable="true">내용을 입력하세요...</div></details><p><br></p>');
+    const tid='tg'+Date.now();
+    const html='<div class="toggle-block" id="'+tid+'">'+
+      '<div class="toggle-header">'+
+        '<span class="toggle-arrow" onclick="toggleBlock(this)" contenteditable="false">▶</span>'+
+        '<span class="toggle-title" contenteditable="true">토글 제목을 입력하세요</span>'+
+      '</div>'+
+      '<div class="toggle-content">내용을 입력하세요...</div>'+
+    '</div><p><br></p>';
+    document.execCommand('insertHTML',false,html);
+    // make content editable after insert
+    setTimeout(()=>{
+      const el=document.getElementById(tid);
+      if(el){
+        const content=el.querySelector('.toggle-content');
+        if(content){ content.contentEditable='true'; bindDrop(content,sid); }
+      }
+    },50);
   }
   else if(action==='emoji'){
     const sel=window.getSelection();if(sel&&sel.rangeCount) emojiRange=sel.getRangeAt(0).cloneRange();
@@ -746,6 +765,19 @@ function pickEmoji(em){
   document.getElementById('emoji-picker').classList.remove('show');
   if(emojiRange){const sel=window.getSelection();sel.removeAllRanges();sel.addRange(emojiRange);}
   document.execCommand('insertText',false,em);
+}
+
+// ── Toggle block ──────────────────────────────────────────
+function toggleBlock(arrow){
+  arrow.classList.toggle('open');
+  const block=arrow.closest('.toggle-block');
+  if(!block) return;
+  const content=block.querySelector('.toggle-content');
+  if(content){
+    const isOpen=arrow.classList.contains('open');
+    content.style.display=isOpen?'block':'none';
+    if(isOpen) content.contentEditable='true';
+  }
 }
 
 // ── Lightbox ───────────────────────────────────────────────
