@@ -33,39 +33,37 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .case-chip.active{background:var(--sur);border-color:var(--bds);color:var(--tx);font-weight:500}
 .flow-case{display:none}.flow-case.active{display:block}
 .steps{padding:4px 0}
-.step{display:flex;gap:14px;align-items:flex-start}
+.step{display:flex;gap:14px;position:relative}
 .step:hover{background:var(--sur2);border-radius:var(--rs);margin:0 -8px;padding:0 8px}
 .step-spine{display:flex;flex-direction:column;align-items:center}
 .step-num{width:30px;height:30px;border-radius:50%;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-line{width:1px;flex:1;min-height:10px;background:var(--bd);margin:3px 0}
-.step:last-child .step-line{display:none}
 .step-body{padding-bottom:20px;padding-top:4px;flex:1;min-width:0}
-.step-label{font-size:13px;font-weight:600;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
-.step-actions{display:none;gap:4px;margin-left:auto;flex-shrink:0;align-items:center;padding-top:6px}
-.step:hover .step-actions{display:flex}
-.step-del-btn,.step-add-btn{width:20px;height:20px;border:none;border-radius:4px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .12s;padding:0}
-.step-del-btn{background:var(--cob);color:var(--co)}
-.step-del-btn:hover{background:var(--co);color:#fff}
-.step-add-btn{background:var(--acb);color:var(--act)}
-.step-add-btn:hover{background:var(--ac);color:#fff}
-.callout-wrap{position:relative}
-.callout-del{position:absolute;top:8px;right:8px;width:20px;height:20px;border:none;border-radius:4px;cursor:pointer;font-size:12px;background:var(--cob);color:var(--co);display:none;align-items:center;justify-content:center;transition:all .12s}
-.callout-wrap:hover .callout-del{display:flex}
-.callout-del:hover{background:var(--co);color:#fff}
-.add-step-bar{margin-top:8px}
-.add-step-btn{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;border:1px dashed var(--bd);background:transparent;color:var(--tx3);font-size:12px;cursor:pointer;transition:all .12s;font-family:inherit}
-.add-step-btn:hover{border-color:var(--ac);color:var(--act);background:var(--acb)}
-.step-desc{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.5;cursor:text;border-radius:3px;padding:1px 3px;margin-left:-3px}
+.step-label{font-size:13px;font-weight:600;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px;outline:none}
 .step-label:hover,.step-desc:hover{background:var(--sur2)}
-.step-label:focus,.step-desc:focus{background:var(--sur2);outline:none;box-shadow:0 0 0 2px var(--ac)}
+.step-label:focus,.step-desc:focus{background:var(--sur2);box-shadow:0 0 0 2px var(--ac)}
+.step-desc{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.5;cursor:text;border-radius:3px;padding:1px 3px;outline:none}
 .step.gray .step-num{background:var(--sur2);color:var(--tx2)}
 .step.blue .step-num{background:var(--acb);color:var(--act)}
 .step.teal .step-num{background:var(--tlb);color:var(--tl)}
 .step.amber .step-num{background:var(--amb);color:var(--am)}
 .step.coral .step-num{background:var(--cob);color:var(--co)}
-.callout{border-radius:var(--r);padding:12px 16px;font-size:12px;line-height:1.7;margin-top:4px}
+.step-actions{display:none;gap:4px;margin-left:auto;flex-shrink:0;align-items:center;padding-top:6px}
+.step:hover .step-actions{display:flex}
+.step-del-btn,.step-add-btn{width:22px;height:22px;border:none;border-radius:4px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .12s;padding:0;font-family:inherit}
+.step-del-btn{background:var(--cob);color:var(--co)}
+.step-del-btn:hover{background:var(--co);color:#fff}
+.step-add-btn{background:var(--acb);color:var(--act)}
+.step-add-btn:hover{background:var(--ac);color:#fff}
+.callout{border-radius:var(--r);padding:12px 16px;font-size:12px;line-height:1.7;margin-top:8px;outline:none}
 .callout.warn{border-left:3px solid var(--am);background:var(--amb);color:var(--am)}
 .callout.info{border-left:3px solid var(--ac);background:var(--acb);color:var(--act)}
+.callout-wrap{position:relative;margin-top:8px}
+.callout-del{position:absolute;top:8px;right:8px;width:20px;height:20px;border:none;border-radius:4px;cursor:pointer;font-size:12px;background:rgba(0,0,0,.15);color:inherit;display:none;align-items:center;justify-content:center}
+.callout-wrap:hover .callout-del{display:flex}
+.add-step-bar{margin-top:10px}
+.add-step-btn-bar{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:20px;border:1px dashed var(--bd);background:transparent;color:var(--tx3);font-size:12px;cursor:pointer;transition:all .12s;font-family:inherit}
+.add-step-btn-bar:hover{border-color:var(--ac);color:var(--act);background:var(--acb)}
 .search-wrap{position:relative;margin-bottom:14px}
 .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--tx3);pointer-events:none}
 .search-input{width:100%;padding:10px 14px 10px 36px;border-radius:var(--r);border:1px solid var(--bd);background:var(--sur);color:var(--tx);font-size:13px;outline:none;transition:border-color .12s;font-family:inherit}
@@ -96,96 +94,45 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .tbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs);font-size:12px;cursor:pointer;font-family:inherit;font-weight:500;border:1px solid var(--bd);background:var(--sur2);color:var(--tx2);transition:all .12s}
 .tbtn:hover{color:var(--tx);border-color:var(--bds)}
 .tbtn.green{background:var(--tlb);color:var(--tl);border-color:var(--tlb)}
-
-/* ── NOTION EDITOR ─────────────────────────── */
+/* notion editor */
 .notion-wrap{border-top:1px solid var(--bd);margin-top:10px;padding-top:10px}
-.notion-hint{font-size:11px;color:var(--tx3);margin-bottom:6px;display:flex;align-items:center;gap:6px}
-
-/* slash command menu */
-.slash-menu{
-  position:fixed;
-  background:var(--sur);
-  border:1px solid var(--bd);
-  border-radius:var(--r);
-  box-shadow:0 8px 24px rgba(0,0,0,.15);
-  z-index:9100;
-  min-width:220px;
-  overflow:hidden;
-  display:none;
-}
+.notion-hint{font-size:11px;color:var(--tx3);margin-bottom:6px}
+.notion-editor{min-height:40px;outline:none;font-size:13px;line-height:1.8;color:var(--tx);border-radius:var(--rs);padding:6px 8px;transition:background .12s;cursor:text;word-break:break-word}
+.notion-editor:focus{background:var(--sur2)}
+.notion-editor:empty::before{content:'텍스트 입력 또는 Ctrl+V 스크린샷...';color:var(--tx3);pointer-events:none}
+.notion-editor img{max-width:100%;max-height:400px;border-radius:var(--rs);border:1px solid var(--bd);display:block;margin:6px 0;cursor:zoom-in;object-fit:contain}
+.notion-editor h1{font-size:20px;font-weight:700;margin:6px 0 2px}
+.notion-editor h2{font-size:16px;font-weight:600;margin:4px 0 2px}
+.notion-editor ul{padding-left:20px;margin:2px 0}
+.notion-editor ul li{margin:1px 0;line-height:1.8}
+.drop-active{background:var(--acb)!important;outline:2px dashed var(--ac)}
+/* slash menu */
+.slash-menu{position:fixed;background:var(--sur);border:1px solid var(--bd);border-radius:var(--r);box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:9100;min-width:220px;overflow:hidden;display:none}
 .slash-menu.show{display:block}
 .slash-menu-title{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--tx3);text-transform:uppercase;padding:8px 12px 4px}
 .slash-item{display:flex;align-items:center;gap:10px;padding:8px 12px;cursor:pointer;transition:background .1s}
-.slash-item:hover,.slash-item.selected{background:var(--acb)}
-.slash-item:hover .slash-icon,.slash-item.selected .slash-icon{color:var(--ac)}
-.slash-icon{width:28px;height:28px;border-radius:6px;background:var(--sur2);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--tx2);flex-shrink:0;border:1px solid var(--bd)}
+.slash-item:hover,.slash-item.sel{background:var(--acb)}
+.slash-icon{width:26px;height:26px;border-radius:5px;background:var(--sur2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--tx2);flex-shrink:0;border:1px solid var(--bd)}
 .slash-label{font-size:13px;font-weight:500;color:var(--tx)}
-.slash-desc{font-size:11px;color:var(--tx3);margin-top:1px}
-
-/* emoji picker */
-.emoji-picker{
-  position:fixed;
-  display:none;
-  background:var(--sur);
-  border:1px solid var(--bd);
-  border-radius:var(--r);
-  box-shadow:0 8px 24px rgba(0,0,0,.15);
-  z-index:9200;
-  padding:10px;
-  width:280px;
-}
+.slash-desc{font-size:11px;color:var(--tx3)}
+/* emoji */
+.emoji-picker{position:fixed;display:none;background:var(--sur);border:1px solid var(--bd);border-radius:var(--r);box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:9200;padding:10px;width:280px}
 .emoji-picker.show{display:block}
 .emoji-search{width:100%;padding:6px 10px;border-radius:var(--rs);border:1px solid var(--bd);background:var(--sur2);color:var(--tx);font-size:12px;outline:none;font-family:inherit;margin-bottom:8px}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:2px;max-height:200px;overflow-y:auto}
 .emoji-btn{width:32px;height:32px;border:none;background:none;font-size:18px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;transition:background .1s}
 .emoji-btn:hover{background:var(--sur2)}
-
-.notion-editor{
-  min-height:48px;
-  outline:none;
-  font-size:13px;
-  line-height:1.8;
-  color:var(--tx);
-  border-radius:var(--rs);
-  padding:8px;
-  transition:background .12s;
-  cursor:text;
-  word-break:break-word;
-  overflow-wrap:break-word;
-}
-.notion-editor:focus{background:var(--sur2)}
-.notion-editor:empty::before{content:'텍스트 입력 또는 스크린샷 Ctrl+V...';color:var(--tx3);pointer-events:none}
-.notion-editor img{max-width:100%;max-height:400px;border-radius:var(--rs);border:1px solid var(--bd);display:block;margin:6px 0;cursor:zoom-in;object-fit:contain}
-.notion-editor ul{padding-left:20px;margin:2px 0}
-.notion-editor ul li{margin:1px 0;line-height:1.8}
-.notion-editor ul ul{padding-left:20px}
-.notion-editor img:hover{border-color:var(--bds)}
-/* heading styles inside editor */
-.notion-editor h1{font-size:22px;font-weight:700;line-height:1.3;margin:8px 0 4px}
-.notion-editor h2{font-size:17px;font-weight:600;line-height:1.4;margin:6px 0 3px}
-.notion-editor h3{font-size:14px;font-weight:600;margin:4px 0 2px}
-/* toggle block */
-.notion-editor details{border-radius:var(--rs);margin:4px 0}
-.notion-editor details summary{cursor:pointer;font-weight:500;padding:4px 6px;border-radius:var(--rs);list-style:none;display:flex;align-items:center;gap:6px}
-.notion-editor details summary::before{content:'▶';font-size:10px;color:var(--tx3);transition:transform .15s;flex-shrink:0}
-.notion-editor details[open] summary::before{transform:rotate(90deg)}
-.notion-editor details summary:hover{background:var(--sur2)}
-.notion-editor .toggle-content{padding:4px 4px 4px 22px;outline:none}
-/* drop overlay */
-.drop-active{background:var(--acb)!important;outline:2px dashed var(--ac)}
-
 /* lightbox */
 .lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
 .lb.open{display:flex}
 .lb img{max-width:92vw;max-height:90vh;border-radius:var(--r);object-fit:contain}
-
 /* mobile */
 .mob-hdr{display:none;position:sticky;top:0;z-index:100;background:var(--sur);border-bottom:1px solid var(--bd);padding:14px 16px;align-items:center;justify-content:space-between}
 .mob-title{font-size:15px;font-weight:700}
 .hamburger{background:none;border:none;cursor:pointer;color:var(--tx);display:flex;flex-direction:column;gap:4px;padding:2px 4px}
 .hamburger span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px}
-.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
-.sb-overlay.open{display:block}
+.sbo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
+.sbo.open{display:block}
 @media(max-width:700px){
   .sidebar{position:fixed;left:-240px;top:0;z-index:300;transition:left .2s;height:100dvh;width:240px}
   .sidebar.open{left:0}
@@ -195,7 +142,7 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 </style>
 </head>
 <body>
-<div class="sb-overlay" id="sbo" onclick="closeSb()"></div>
+<div class="sbo" id="sbo" onclick="closeSb()"></div>
 <div class="lb" id="lb" onclick="closeLb()"><img id="lbimg" src="" alt=""></div>
 <div class="slash-menu" id="slash-menu"><div class="slash-menu-title">명령어 선택</div></div>
 <div class="emoji-picker" id="emoji-picker">
@@ -238,7 +185,6 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
     <button class="tbtn green" onclick="exportData()">💾 내보내기</button>
   </div>
 
-  <!-- FLOW -->
   <div class="section active" id="sec-flow">
     <div class="page-header">
       <div class="page-eyebrow">처리 플로우</div>
@@ -253,100 +199,41 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
         <div class="case-chip" onclick="showCase('cafe24','refund',this)">🔴 환불</div>
         <div class="case-chip" onclick="showCase('cafe24','inq',this)">💬 일반 문의</div>
       </div>
-      <div class="flow-case active" id="cafe24-cancel">
-        <div class="steps">
-          <div class="step gray" data-sid="c24ca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step blue" data-sid="c24ca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">구매 취소 승인</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 주문관리 › 취소 승인 처리</div></div></div>
-          <div class="step teal" data-sid="c24ca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 취소 사유 전달</div></div></div>
-          <div class="step gray" data-sid="c24ca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">취소 완료 안내 → 템플릿 C-02 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 출고 이후 접수된 건은 반품 플로우로 전환</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
-        
-        <div class="flow-case" id="cafe24-return">
-        <div class="steps">
-          <div class="step gray" data-sid="c24re1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step amber" data-sid="c24re2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">환불 조건 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">도착일 14일 이내 / 절반 이상 잔여 / 공식 판매처 구매 여부</div></div></div>
-          <div class="step amber" data-sid="c24re3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">반품 관리 및 반품 승인</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 주문관리 › 반품 승인</div></div></div>
-          <div class="step amber" data-sid="c24re4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
-          <div class="step teal" data-sid="c24re5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re5')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re5')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부</div></div></div>
-          <div class="step gray" data-sid="c24re6"><div class="step-spine"><div class="step-num">6</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re6')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re6')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">반품 안내 + 배송비 안내 → 템플릿 D-02 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
-        
-        <div class="flow-case" id="cafe24-refund">
-        <div class="steps">
-          <div class="step gray" data-sid="c24rf1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step coral" data-sid="c24rf2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">환불 조건 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">100% 환불 규정 충족 여부 확인 → 템플릿 D-01 참고</div></div></div>
-          <div class="step coral" data-sid="c24rf3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
-          <div class="step teal" data-sid="c24rf4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 전달</div></div></div>
-          <div class="step gray" data-sid="c24rf5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf5')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf5')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 예정 안내 → 템플릿 D-03 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
-        
-        <div class="flow-case" id="cafe24-inq">
-        <div class="steps">
-          <div class="step gray" data-sid="c24iq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24iq1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24iq1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿 메뉴에서 해당 유형 검색</div></div></div>
-          <div class="step blue" data-sid="c24iq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24iq2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24iq2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">답변 템플릿 복붙</div><div class="step-desc" contenteditable="true" spellcheck="false">[ ] 표시된 부분만 수정 후 발송</div></div></div>
-        </div>
-      </div>
+      <div class="flow-case active" id="cafe24-cancel"><div class="steps"></div></div>
+      <div class="flow-case" id="cafe24-return"><div class="steps"></div></div>
+      <div class="flow-case" id="cafe24-refund"><div class="steps"></div></div>
+      <div class="flow-case" id="cafe24-inq"><div class="steps"></div></div>
     </div>
 
     <div class="flow-panel" id="fp-naver">
       <div class="callout info" style="margin-bottom:16px">고객문의 탭 / 톡톡 탭 두 채널 모두 동일한 흐름으로 처리합니다</div>
       <div class="case-row">
         <div class="case-chip active" onclick="showCase('naver','cancel',this)">🔵 취소·반품</div>
-        <div class="case-chip" onclick="showCase('naver','inq',this)">💬 일반 문의
-        </div>
-        <div class="flow-case active" id="naver-cancel">
-        <div class="steps">
-          <div class="step gray" data-sid="nvca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nvca1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nvca1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">스마트스토어 판매자센터 › 문의/리뷰 탭 확인</div></div></div>
-          <div class="step blue" data-sid="nvca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nvca2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nvca2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·반품 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">판매자센터 › 취소/반품 관리에서 승인</div></div></div>
-          <div class="step teal" data-sid="nvca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nvca3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nvca3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달 (카페24와 동일 양식)</div></div></div>
-          <div class="step gray" data-sid="nvca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nvca4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nvca4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
-        
-        <div class="flow-case" id="naver-inq">
-        <div class="steps">
-          <div class="step gray" data-sid="nviq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nviq1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nviq1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿 메뉴에서 유형 검색</div></div></div>
-          <div class="step blue" data-sid="nviq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('nviq2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('nviq2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">답변 복붙</div><div class="step-desc" contenteditable="true" spellcheck="false">[ ] 표시 부분만 수정 후 발송</div></div></div>
-        </div>
+        <div class="case-chip" onclick="showCase('naver','inq',this)">💬 일반 문의</div>
       </div>
+      <div class="flow-case active" id="naver-cancel"><div class="steps"></div></div>
+      <div class="flow-case" id="naver-inq"><div class="steps"></div></div>
     </div>
 
     <div class="flow-panel" id="fp-naverpay">
       <div class="callout info" style="margin-bottom:16px">스마트스토어와 별도 채널 — 네이버 판매자센터 › 정산/결제 메뉴에서 처리</div>
-      <div class="steps">
-        <div class="step gray" data-sid="np1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('np1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('np1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">네이버 판매자센터 › 네이버페이 문의 탭</div></div></div>
-        <div class="step blue" data-sid="np2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('np2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('np2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">결제·환불 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">세부 플로우 추후 작성 예정</div></div></div>
-        <div class="step teal" data-sid="np3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('np3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('np3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달</div></div></div>
-        <div class="step gray" data-sid="np4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('np4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('np4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
-      </div>
+      <div class="steps" id="fp-naverpay-steps"></div>
     </div>
 
     <div class="flow-panel" id="fp-coupang">
-      <div class="callout info" style="margin-bottom:16px">쿠팡 Wing 판매자 센터에서 처리 — 세부 플로우 추후 작성 예정</div>
-      <div class="steps">
-        <div class="step gray" data-sid="cp1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('cp1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('cp1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">쿠팡 Wing › 고객문의 탭 확인</div></div></div>
-        <div class="step blue" data-sid="cp2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('cp2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('cp2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·반품·환불 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">세부 플로우 추후 작성 예정</div></div></div>
-        <div class="step teal" data-sid="cp3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('cp3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('cp3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달</div></div></div>
-        <div class="step gray" data-sid="cp4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('cp4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('cp4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
-      </div>
+      <div class="callout info" style="margin-bottom:16px">쿠팡 Wing 판매자 센터에서 처리</div>
+      <div class="steps" id="fp-coupang-steps"></div>
     </div>
 
     <div class="flow-panel" id="fp-kakao">
-      <div class="steps">
-        <div class="step gray" data-sid="kk1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('kk1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('kk1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카카오 비즈니스 채널 › 채팅 탭 확인</div></div></div>
-        <div class="step blue" data-sid="kk2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('kk2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('kk2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악 후 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿에서 유형 검색 후 복붙</div></div></div>
-        <div class="step amber" data-sid="kk3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('kk3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('kk3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·환불 필요 시</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 또는 해당 채널 플로우로 이관</div></div></div>
-      </div>
+      <div class="steps" id="fp-kakao-steps"></div>
     </div>
 
     <div class="flow-panel" id="fp-phone">
-      <div class="steps">
-        <div class="step gray" data-sid="ph1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('ph1')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('ph1')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">성함 / 번호 / 문의내용 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 어려운 경우 콜백 안내 후 내부 확인</div></div></div>
-        <div class="step blue" data-sid="ph2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('ph2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('ph2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">즉시 답변 or 확인 후 콜백</div><div class="step-desc" contenteditable="true" spellcheck="false">사용법·제품 관련 → 즉시 / 환불·취소 → 확인 후 콜백</div></div></div>
-        <div class="step teal" data-sid="ph3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('ph3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('ph3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">해당 채널 플로우로 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 확인 후 카페24 또는 해당 채널에서 처리</div></div></div>
-      </div>
+      <div class="steps" id="fp-phone-steps"></div>
     </div>
   </div>
 
-  <!-- TEMPLATES -->
   <div class="section" id="sec-tmpl">
     <div class="page-header">
       <div class="page-eyebrow">답변 템플릿</div>
@@ -372,109 +259,355 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 </div>
 
 <script>
-// ── Emoji ──────────────────────────────────────────────────
-const EMOJIS=[
-  {e:'😀',k:'웃음 기쁨'},{e:'😊',k:'미소 행복'},{e:'😍',k:'사랑 하트'},
-  {e:'🥰',k:'사랑 귀여움'},{e:'😎',k:'멋짐'},{e:'🤔',k:'생각 고민'},
-  {e:'😅',k:'당황 식은땀'},{e:'😂',k:'웃음 눈물'},{e:'😭',k:'슬픔 울음'},
-  {e:'😱',k:'놀람 충격'},{e:'😤',k:'화남 짜증'},{e:'🙏',k:'감사 부탁'},
-  {e:'👍',k:'좋아요 추천'},{e:'👎',k:'싫어요'},{e:'✅',k:'완료 체크'},
-  {e:'❌',k:'취소 오류'},{e:'⚠️',k:'경고 주의'},{e:'📌',k:'핀 중요'},
-  {e:'📎',k:'첨부 클립'},{e:'📋',k:'복사'},{e:'📞',k:'전화 통화'},
-  {e:'📦',k:'택배 배송'},{e:'💰',k:'돈 금액'},{e:'🔍',k:'검색'},
-  {e:'💡',k:'아이디어'},{e:'🚨',k:'긴급 경보'},{e:'🟢',k:'초록 원'},
-  {e:'🔵',k:'파란 원'},{e:'🟡',k:'노란 원'},{e:'🔴',k:'빨간 원'},
-  {e:'⭐',k:'별 중요'},{e:'🔥',k:'불 핫'},{e:'💬',k:'말풍선 대화'},
-  {e:'📝',k:'메모 작성'},{e:'🔔',k:'알림 벨'},{e:'✏️',k:'연필 수정'},
-  {e:'📸',k:'사진 카메라'},{e:'➡️',k:'화살표 오른쪽'},{e:'⬇️',k:'화살표 아래'},
-  {e:'1️⃣',k:'1번'},{e:'2️⃣',k:'2번'},{e:'3️⃣',k:'3번'},
-  {e:'4️⃣',k:'4번'},{e:'5️⃣',k:'5번'},{e:'🔁',k:'반복 순환'},
-];
-let emojiSavedRange=null;
-function renderEmojiGrid(list){
-  document.getElementById('emoji-grid').innerHTML=list.map(em=>`<button class="emoji-btn" onclick="pickEmoji('${em.e}')" title="${em.k}">${em.e}</button>`).join('');
+// ── IndexedDB ──────────────────────────────────────────────
+const DB='alplab6',ST='notes';let db;
+function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=e=>e.target.result.createObjectStore(ST);r.onsuccess=e=>{db=e.target.result;res()};r.onerror=rej})}
+function dbGet(k){return new Promise(r=>{const req=db.transaction(ST,'readonly').objectStore(ST).get(k);req.onsuccess=()=>r(req.result??null)})}
+function dbSet(k,v){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).put(v,k);tx.oncomplete=r})}
+function dbAll(){return new Promise(r=>{const out=[];const req=db.transaction(ST,'readonly').objectStore(ST).openCursor();req.onsuccess=e=>{const c=e.target.result;if(c){out.push({k:c.key,v:c.value});c.continue()}else r(out)}})}
+function dbClear(){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).clear();tx.oncomplete=r})}
+
+// ── Step seed data ─────────────────────────────────────────
+const STEP_SEED={
+  'cafe24-cancel':[
+    {sid:'c24ca1',color:'gray',label:'고객 문의 접수',desc:'카페24 관리자 › 고객문의 탭에서 내용 확인'},
+    {sid:'c24ca2',color:'blue',label:'구매 취소 승인',desc:'카페24 관리자 › 주문관리 › 취소 승인 처리'},
+    {sid:'c24ca3',color:'teal',label:'경영지원팀 환불 내용 전달',desc:'주문번호 / 고객명 / 환불 금액 / 취소 사유 전달'},
+    {sid:'c24ca4',color:'gray',label:'고객 답변',desc:'취소 완료 안내 → 템플릿 C-02 사용'},
+  ],
+  'cafe24-return':[
+    {sid:'c24re1',color:'gray',label:'고객 문의 접수',desc:'카페24 관리자 › 고객문의 탭에서 내용 확인'},
+    {sid:'c24re2',color:'amber',label:'환불 조건 확인',desc:'도착일 14일 이내 / 절반 이상 잔여 / 공식 판매처 구매 여부'},
+    {sid:'c24re3',color:'amber',label:'반품 관리 및 반품 승인',desc:'카페24 관리자 › 주문관리 › 반품 승인'},
+    {sid:'c24re4',color:'amber',label:'이지어드민에서 회수 신청',desc:'이지어드민 › 회수 신청 후 회수 송장 등록'},
+    {sid:'c24re5',color:'teal',label:'경영지원팀 환불 내용 전달',desc:'주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부'},
+    {sid:'c24re6',color:'gray',label:'고객 답변',desc:'반품 안내 + 배송비 안내 → 템플릿 D-02 사용'},
+  ],
+  'cafe24-refund':[
+    {sid:'c24rf1',color:'gray',label:'고객 문의 접수',desc:'카페24 관리자 › 고객문의 탭에서 내용 확인'},
+    {sid:'c24rf2',color:'coral',label:'환불 조건 확인',desc:'100% 환불 규정 충족 여부 확인 → 템플릿 D-01 참고'},
+    {sid:'c24rf3',color:'coral',label:'이지어드민에서 회수 신청',desc:'이지어드민 › 회수 신청 후 회수 송장 등록'},
+    {sid:'c24rf4',color:'teal',label:'경영지원팀 환불 내용 전달',desc:'주문번호 / 고객명 / 환불 금액 / 사유 전달'},
+    {sid:'c24rf5',color:'gray',label:'고객 답변',desc:'환불 예정 안내 → 템플릿 D-03 사용'},
+  ],
+  'cafe24-inq':[
+    {sid:'c24iq1',color:'gray',label:'문의 유형 파악',desc:'답변 템플릿 메뉴에서 해당 유형 검색'},
+    {sid:'c24iq2',color:'blue',label:'답변 템플릿 복붙',desc:'[ ] 표시된 부분만 수정 후 발송'},
+  ],
+  'naver-cancel':[
+    {sid:'nvca1',color:'gray',label:'문의 접수',desc:'스마트스토어 판매자센터 › 문의/리뷰 탭 확인'},
+    {sid:'nvca2',color:'blue',label:'취소·반품 처리',desc:'판매자센터 › 취소/반품 관리에서 승인'},
+    {sid:'nvca3',color:'teal',label:'경영지원팀 전달',desc:'환불 내용 전달 (카페24와 동일 양식)'},
+    {sid:'nvca4',color:'gray',label:'고객 답변',desc:'해당 템플릿 사용'},
+  ],
+  'naver-inq':[
+    {sid:'nviq1',color:'gray',label:'문의 유형 파악',desc:'답변 템플릿 메뉴에서 유형 검색'},
+    {sid:'nviq2',color:'blue',label:'답변 복붙',desc:'[ ] 표시 부분만 수정 후 발송'},
+  ],
+  'fp-naverpay':[
+    {sid:'np1',color:'gray',label:'문의 접수',desc:'네이버 판매자센터 › 네이버페이 문의 탭'},
+    {sid:'np2',color:'blue',label:'결제·환불 처리',desc:'세부 플로우 추후 작성 예정'},
+    {sid:'np3',color:'teal',label:'경영지원팀 전달',desc:'환불 내용 전달'},
+    {sid:'np4',color:'gray',label:'고객 답변',desc:'해당 템플릿 사용'},
+  ],
+  'fp-coupang':[
+    {sid:'cp1',color:'gray',label:'문의 접수',desc:'쿠팡 Wing › 고객문의 탭 확인'},
+    {sid:'cp2',color:'blue',label:'취소·반품·환불 처리',desc:'세부 플로우 추후 작성 예정'},
+    {sid:'cp3',color:'teal',label:'경영지원팀 전달',desc:'환불 내용 전달'},
+    {sid:'cp4',color:'gray',label:'고객 답변',desc:'해당 템플릿 사용'},
+  ],
+  'fp-kakao':[
+    {sid:'kk1',color:'gray',label:'문의 접수',desc:'카카오 비즈니스 채널 › 채팅 탭 확인'},
+    {sid:'kk2',color:'blue',label:'문의 유형 파악 후 답변',desc:'답변 템플릿에서 유형 검색 후 복붙'},
+    {sid:'kk3',color:'amber',label:'취소·환불 필요 시',desc:'카페24 또는 해당 채널 플로우로 이관'},
+  ],
+  'fp-phone':[
+    {sid:'ph1',color:'gray',label:'성함 / 번호 / 문의내용 확인',desc:'답변 어려운 경우 콜백 안내 후 내부 확인'},
+    {sid:'ph2',color:'blue',label:'즉시 답변 or 확인 후 콜백',desc:'사용법·제품 관련 → 즉시 / 환불·취소 → 확인 후 콜백'},
+    {sid:'ph3',color:'teal',label:'해당 채널 플로우로 처리',desc:'주문번호 확인 후 카페24 또는 해당 채널에서 처리'},
+  ],
+};
+
+const CALLOUT_SEED={
+  'cafe24-cancel':{cls:'warn',txt:'⚠ 출고 이후 접수된 건은 반품 플로우로 전환'},
+  'cafe24-return':{cls:'warn',txt:'⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수'},
+  'cafe24-refund':{cls:'warn',txt:'⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내'},
+};
+
+const ALL_FCS=Object.keys(STEP_SEED);
+
+// ── Step rendering ─────────────────────────────────────────
+async function getStepList(fcId){
+  const saved=await dbGet('steps:'+fcId);
+  return saved||STEP_SEED[fcId]||[];
 }
-function filterEmoji(q){
-  const f=q.trim().toLowerCase();
-  renderEmojiGrid(f?EMOJIS.filter(e=>e.k.includes(f)):EMOJIS);
-}
-function pickEmoji(em){
-  document.getElementById('emoji-picker').classList.remove('show');
-  closeSlash();
-  if(emojiSavedRange){
-    const sel=window.getSelection();
-    sel.removeAllRanges();sel.addRange(emojiSavedRange);
-  }
-  document.execCommand('insertText',false,em);
-  const ed=document.activeElement;
-  if(ed) triggerSave(ed);
+async function saveStepList(fcId,steps){await dbSet('steps:'+fcId,steps);}
+
+function getStepsContainer(fcId){
+  return document.querySelector('#'+fcId+' .steps')||document.getElementById(fcId+'-steps');
 }
 
-// ── Slash command ───────────────────────────────────────────
+async function renderSteps(fcId){
+  const container=getStepsContainer(fcId);
+  if(!container) return;
+  const steps=await getStepList(fcId);
+  container.innerHTML='';
+
+  steps.forEach((s,i)=>{
+    const el=makeStepEl(s.sid,s.color,s.label,s.desc,i,steps.length,fcId);
+    container.appendChild(el);
+    mountEditor(s.sid,el.querySelector('.step-body'));
+  });
+
+  // callout
+  const fcEl=document.getElementById(fcId);
+  if(fcEl){
+    const existingCo=fcEl.querySelector('.callout-wrap');
+    if(existingCo) existingCo.remove();
+    const coSeed=CALLOUT_SEED[fcId];
+    if(coSeed){
+      const deleted=await dbGet('callout-del:'+fcId);
+      if(!deleted){
+        const txt=await dbGet('callout:'+fcId);
+        const wrap=document.createElement('div');
+        wrap.className='callout-wrap';
+        const btn=document.createElement('button');
+        btn.className='callout-del';btn.textContent='×';
+        btn.addEventListener('click',()=>delCallout(fcId,wrap));
+        const div=document.createElement('div');
+        div.className='callout '+coSeed.cls;
+        div.contentEditable='true';div.spellcheck=false;
+        div.textContent=txt||coSeed.txt;
+        div.addEventListener('input',()=>{clearTimeout(div._t);div._t=setTimeout(()=>dbSet('callout:'+fcId,div.textContent),500);});
+        wrap.appendChild(div);wrap.appendChild(btn);
+        container.after(wrap);
+      }
+    }
+    // add step bar
+    let bar=fcEl.querySelector('.add-step-bar');
+    if(!bar){
+      bar=document.createElement('div');bar.className='add-step-bar';
+      const barBtn=document.createElement('button');barBtn.className='add-step-btn-bar';barBtn.textContent='＋ 스텝 추가';
+      barBtn.addEventListener('click',()=>addStepToCase(fcId));
+      bar.appendChild(barBtn);fcEl.appendChild(bar);
+    }
+  }
+}
+
+function makeStepEl(sid,color,label,desc,i,total,fcId){
+  const div=document.createElement('div');
+  div.className='step '+color;
+  div.dataset.sid=sid;
+
+  // spine
+  const spine=document.createElement('div');spine.className='step-spine';
+  const num=document.createElement('div');num.className='step-num';num.textContent=i+1;
+  const line=document.createElement('div');line.className='step-line';
+  if(i===total-1) line.style.display='none';
+  spine.appendChild(num);spine.appendChild(line);
+
+  // body
+  const body=document.createElement('div');body.className='step-body';
+  const labelEl=document.createElement('div');labelEl.className='step-label';
+  labelEl.contentEditable='true';labelEl.spellcheck=false;labelEl.textContent=label;
+  const descEl=document.createElement('div');descEl.className='step-desc';
+  descEl.contentEditable='true';descEl.spellcheck=false;descEl.textContent=desc;
+  body.appendChild(labelEl);body.appendChild(descEl);
+
+  // actions
+  const actions=document.createElement('div');actions.className='step-actions';
+  const addBtn=document.createElement('button');addBtn.className='step-add-btn';addBtn.textContent='+';addBtn.title='아래에 스텝 추가';
+  const delBtn=document.createElement('button');delBtn.className='step-del-btn';delBtn.textContent='×';delBtn.title='삭제';
+  addBtn.addEventListener('click',()=>addStepAfter(sid,fcId));
+  delBtn.addEventListener('click',()=>delStep(sid,fcId));
+  actions.appendChild(addBtn);actions.appendChild(delBtn);
+
+  div.appendChild(spine);div.appendChild(body);div.appendChild(actions);
+
+  // save on edit
+  const save=async()=>{
+    const steps=await getStepList(fcId);
+    const s=steps.find(x=>x.sid===sid);
+    if(s){s.label=labelEl.textContent;s.desc=descEl.textContent;}
+    await saveStepList(fcId,steps);
+  };
+  labelEl.addEventListener('input',()=>{clearTimeout(labelEl._t);labelEl._t=setTimeout(save,500);});
+  descEl.addEventListener('input',()=>{clearTimeout(descEl._t);descEl._t=setTimeout(save,500);});
+  labelEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();labelEl.blur();}});
+  descEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();descEl.blur();}});
+
+  return div;
+}
+
+async function delStep(sid,fcId){
+  if(!confirm('이 스텝을 삭제할까요?')) return;
+  let steps=await getStepList(fcId);
+  steps=steps.filter(s=>s.sid!==sid);
+  await saveStepList(fcId,steps);
+  renderSteps(fcId);
+}
+async function addStepAfter(sid,fcId){
+  let steps=await getStepList(fcId);
+  const idx=steps.findIndex(s=>s.sid===sid);
+  const newSid='s'+Date.now();
+  steps.splice(idx+1,0,{sid:newSid,color:'gray',label:'새 스텝',desc:'설명을 입력하세요'});
+  await saveStepList(fcId,steps);
+  renderSteps(fcId);
+}
+async function addStepToCase(fcId){
+  let steps=await getStepList(fcId);
+  const newSid='s'+Date.now();
+  steps.push({sid:newSid,color:'gray',label:'새 스텝',desc:'설명을 입력하세요'});
+  await saveStepList(fcId,steps);
+  renderSteps(fcId);
+}
+async function delCallout(fcId,wrap){
+  if(!confirm('이 메모를 삭제할까요?')) return;
+  wrap.remove();
+  await dbSet('callout-del:'+fcId,true);
+}
+
+// ── Notion editor ──────────────────────────────────────────
+let saveTimers={};
+let slashActive=false,slashRange=null,slashQuery='',slashIdx=0,emojiRange=null;
+
+function mountEditor(sid,container){
+  if(container.querySelector('.notion-wrap')) return;
+  const wrap=document.createElement('div');wrap.className='notion-wrap';
+  const hint=document.createElement('div');hint.className='notion-hint';hint.textContent='📝 자유롭게 입력 · / 로 명령어 · Ctrl+V 스크린샷 · 이미지 드래그';
+  const ed=document.createElement('div');ed.className='notion-editor';ed.contentEditable='true';ed.spellcheck=false;ed.id='ne-'+sid;
+  wrap.appendChild(hint);wrap.appendChild(ed);container.appendChild(wrap);
+
+  dbGet('n:'+sid).then(html=>{if(html) ed.innerHTML=html;});
+
+  ed.addEventListener('input',()=>{clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);});
+
+  ed.addEventListener('paste',e=>{
+    const items=[...(e.clipboardData?.items||[])];
+    const img=items.find(i=>i.type.startsWith('image/'));
+    if(!img) return;
+    e.preventDefault();
+    const file=img.getAsFile();
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const imgEl=document.createElement('img');imgEl.src=ev.target.result;
+      const sel=window.getSelection();
+      if(sel&&sel.rangeCount&&ed.contains(sel.anchorNode)){
+        const r=sel.getRangeAt(0);r.collapse(false);r.insertNode(imgEl);
+        r.setStartAfter(imgEl);r.collapse(true);sel.removeAllRanges();sel.addRange(r);
+      } else {ed.appendChild(imgEl);}
+      clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
+    };
+    reader.readAsDataURL(file);
+  });
+
+  ed.addEventListener('dragover',e=>{e.preventDefault();ed.classList.add('drop-active');});
+  ed.addEventListener('dragleave',()=>ed.classList.remove('drop-active'));
+  ed.addEventListener('drop',e=>{
+    e.preventDefault();ed.classList.remove('drop-active');
+    [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{
+      const reader=new FileReader();
+      reader.onload=ev=>{const img=document.createElement('img');img.src=ev.target.result;ed.appendChild(img);clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);};
+      reader.readAsDataURL(f);
+    });
+  });
+
+  ed.addEventListener('click',e=>{if(e.target.tagName==='IMG') openLb(e.target.src);});
+
+  // bullet: "- " → list
+  ed.addEventListener('keydown',e=>{
+    if(e.key===' '){
+      const sel=window.getSelection();
+      if(!sel||!sel.rangeCount) return;
+      const node=sel.getRangeAt(0).startContainer;
+      if(node.nodeType!==3) return;
+      const txt=node.textContent.slice(0,sel.getRangeAt(0).startOffset);
+      if(/^-$/.test(txt.trim())&&txt.trim()==='-'){
+        e.preventDefault();
+        const ul=document.createElement('ul');const li=document.createElement('li');li.innerHTML='<br>';ul.appendChild(li);
+        const block=node.parentElement;
+        node.textContent=node.textContent.slice(0,sel.getRangeAt(0).startOffset-1)+node.textContent.slice(sel.getRangeAt(0).startOffset);
+        if(block.textContent.trim()===''||block.innerHTML==='<br>') block.replaceWith(ul);
+        else block.after(ul);
+        const r=document.createRange();r.setStart(li,0);r.collapse(true);sel.removeAllRanges();sel.addRange(r);
+        clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
+        return;
+      }
+    }
+    if(e.key==='Tab'){
+      const sel=window.getSelection();
+      if(!sel||!sel.rangeCount) return;
+      const li=sel.anchorNode.nodeType===3?sel.anchorNode.parentElement?.closest('li'):sel.anchorNode.closest?.('li');
+      if(li){e.preventDefault();document.execCommand(e.shiftKey?'outdent':'indent',false,null);return;}
+      e.preventDefault();document.execCommand('insertText',false,'  ');
+    }
+  });
+
+  // slash command
+  ed.addEventListener('keyup',e=>{
+    if(e.key==='/' && !slashActive){
+      const sel=window.getSelection();if(!sel||!sel.rangeCount) return;
+      slashRange=sel.getRangeAt(0).cloneRange();emojiRange=slashRange;
+      slashActive=true;slashQuery='';slashIdx=0;
+      const rect=sel.getRangeAt(0).getBoundingClientRect();
+      openSlashAt(rect.left||100,rect.bottom||200);
+    }
+    if(slashActive){
+      if(e.key===' '||e.key==='Escape'){closeSlash();return;}
+      const sel=window.getSelection();
+      if(sel&&sel.rangeCount&&slashRange){
+        const node=sel.getRangeAt(0).startContainer;
+        if(node.nodeType===3){
+          const txt=node.textContent;const p=txt.lastIndexOf('/');
+          if(p>=0){slashQuery=txt.slice(p+1,sel.getRangeAt(0).startOffset);renderSlash(slashQuery);}
+        }
+      }
+    }
+  });
+}
+
+// ── Slash commands ─────────────────────────────────────────
 const SLASH_CMDS=[
-  {icon:'H1', label:'제목 1', desc:'큰 제목', key:'h1 제목1 title', action:'h1'},
-  {icon:'H2', label:'제목 2', desc:'중간 제목', key:'h2 제목2', action:'h2'},
-  {icon:'T',  label:'본문',   desc:'일반 텍스트', key:'본문 텍스트 text', action:'p'},
-  {icon:'B',  label:'굵게',   desc:'Bold 텍스트', key:'굵게 bold', action:'bold'},
-  {icon:'I',  label:'기울기', desc:'Italic 텍스트', key:'기울기 italic', action:'italic'},
-  {icon:'U',  label:'밑줄',   desc:'밑줄 텍스트', key:'밑줄 underline', action:'underline'},
-  {icon:'S',  label:'취소선', desc:'취소선 텍스트', key:'취소선 strike', action:'strike'},
-  {icon:'▶',  label:'토글',   desc:'접었다 펼치기', key:'토글 toggle', action:'toggle'},
-  {icon:'😊', label:'이모지', desc:'이모지 삽입', key:'이모지 emoji', action:'emoji'},
-  {icon:'—',  label:'구분선', desc:'가로 구분선', key:'구분선 hr divider', action:'hr'},
+  {icon:'H1',label:'제목 1',desc:'큰 제목',key:'h1 제목',action:'h1'},
+  {icon:'H2',label:'제목 2',desc:'중간 제목',key:'h2 제목',action:'h2'},
+  {icon:'T',label:'본문',desc:'일반 텍스트',key:'본문 텍스트',action:'p'},
+  {icon:'B',label:'굵게',desc:'Bold',key:'굵게 bold',action:'bold'},
+  {icon:'I',label:'기울기',desc:'Italic',key:'기울기',action:'italic'},
+  {icon:'U',label:'밑줄',desc:'Underline',key:'밑줄',action:'underline'},
+  {icon:'▶',label:'토글',desc:'접었다 펼치기',key:'토글 toggle',action:'toggle'},
+  {icon:'😊',label:'이모지',desc:'이모지 삽입',key:'이모지 emoji',action:'emoji'},
+  {icon:'—',label:'구분선',desc:'가로 구분선',key:'구분선 hr',action:'hr'},
 ];
 
-let slashRange=null, slashQuery='', slashSelectedIdx=0, slashActive=false;
-
-function openSlashMenu(ed, caretRect){
-  slashActive=true; slashQuery=''; slashSelectedIdx=0;
-  const sel=window.getSelection();
-  if(sel&&sel.rangeCount) slashRange=sel.getRangeAt(0).cloneRange();
-  emojiSavedRange=slashRange;
-  renderSlashMenu('');
+function openSlashAt(x,y){
+  renderSlash('');
   const menu=document.getElementById('slash-menu');
-  // position: prefer below caret, fallback to editor position
-  const bottom = caretRect.bottom||caretRect.top||0;
-  let left = caretRect.left||0;
-  let top = bottom + window.scrollY + 6;
-  if(top===window.scrollY+6){
-    // rect was empty, use editor
-    const er=ed.getBoundingClientRect();
-    left=er.left+8; top=er.bottom+window.scrollY+4;
-  }
-  if(left+240>window.innerWidth) left=Math.max(4,window.innerWidth-248);
-  menu.style.left=left+'px';
-  menu.style.top=top+'px';
-  menu.classList.add('show');
+  let left=x,top=y+window.scrollY+4;
+  if(left+240>window.innerWidth) left=window.innerWidth-248;
+  menu.style.left=left+'px';menu.style.top=top+'px';menu.classList.add('show');
 }
-function closeSlash(){
-  document.getElementById('slash-menu').classList.remove('show');
-  slashActive=false; slashQuery=''; slashSelectedIdx=0;
-}
-function renderSlashMenu(q){
+function closeSlash(){document.getElementById('slash-menu').classList.remove('show');slashActive=false;}
+function renderSlash(q){
   const f=q.toLowerCase();
-  const filtered=SLASH_CMDS.filter(c=>!f||c.key.includes(f)||c.label.includes(f));
+  const list=SLASH_CMDS.filter(c=>!f||c.key.includes(f)||c.label.includes(f));
   const menu=document.getElementById('slash-menu');
-  if(!filtered.length){closeSlash();return;}
-  menu.innerHTML='<div class="slash-menu-title">명령어 선택</div>'+
-    filtered.map((c,i)=>`<div class="slash-item${i===slashSelectedIdx?' selected':''}" onclick="runSlashCmd('${c.action}')">
+  if(!list.length){closeSlash();return;}
+  menu.innerHTML='<div class="slash-menu-title">명령어 선택</div>'+list.map((c,i)=>`
+    <div class="slash-item${i===slashIdx?' sel':''}" data-action="${c.action}">
       <div class="slash-icon">${c.icon}</div>
       <div><div class="slash-label">${c.label}</div><div class="slash-desc">${c.desc}</div></div>
     </div>`).join('');
+  menu.querySelectorAll('.slash-item').forEach(el=>{
+    el.addEventListener('click',()=>runSlash(el.dataset.action));
+  });
 }
-function runSlashCmd(action){
+function runSlash(action){
   closeSlash();
-  // delete the slash + query from editor
   if(slashRange){
-    const sel=window.getSelection();
-    sel.removeAllRanges();
+    const sel=window.getSelection();sel.removeAllRanges();
     const r=slashRange.cloneRange();
-    // move start back by (1 + query length) to delete /query
-    try{
-      r.setStart(r.startContainer, Math.max(0, r.startOffset-(1+slashQuery.length)));
-    }catch(e){}
-    sel.addRange(r);
-    document.execCommand('delete',false,null);
+    try{r.setStart(r.startContainer,Math.max(0,r.startOffset-(1+slashQuery.length)));}catch(e){}
+    sel.addRange(r);document.execCommand('delete',false,null);
   }
   if(action==='h1') document.execCommand('formatBlock',false,'h1');
   else if(action==='h2') document.execCommand('formatBlock',false,'h2');
@@ -482,295 +615,119 @@ function runSlashCmd(action){
   else if(action==='bold') document.execCommand('bold',false,null);
   else if(action==='italic') document.execCommand('italic',false,null);
   else if(action==='underline') document.execCommand('underline',false,null);
-  else if(action==='strike') document.execCommand('strikeThrough',false,null);
-  else if(action==='hr'){
-    document.execCommand('insertHTML',false,'<hr style="border:none;border-top:1px solid var(--bd);margin:8px 0"><br>');
-  }
+  else if(action==='hr') document.execCommand('insertHTML',false,'<hr style="border:none;border-top:1px solid var(--bd);margin:8px 0"><br>');
   else if(action==='toggle'){
     document.execCommand('insertHTML',false,
-      `<details style="margin:4px 0"><summary style="cursor:pointer;font-weight:500;padding:4px 6px;border-radius:6px;list-style:none;display:flex;align-items:center;gap:6px;user-select:none" contenteditable="false"><span contenteditable="true">토글 제목</span></summary><div style="padding:4px 4px 4px 22px;outline:none;min-height:24px" contenteditable="true">내용을 입력하세요...</div></details><p><br></p>`
-    );
+      '<details style="margin:4px 0"><summary style="cursor:pointer;font-weight:500;padding:4px 0;list-style:none">▶ 토글 제목</summary><div style="padding:4px 4px 4px 16px;min-height:20px" contenteditable="true">내용을 입력하세요...</div></details><p><br></p>');
   }
   else if(action==='emoji'){
-    // open emoji picker at current position
-    const sel=window.getSelection();
-    if(sel&&sel.rangeCount) emojiSavedRange=sel.getRangeAt(0).cloneRange();
+    const sel=window.getSelection();if(sel&&sel.rangeCount) emojiRange=sel.getRangeAt(0).cloneRange();
     const picker=document.getElementById('emoji-picker');
-    const menu=document.getElementById('slash-menu');
-    const r=menu.getBoundingClientRect();
-    picker.style.left=r.left+'px';
-    picker.style.top=r.top+'px';
+    picker.style.left=(slashRange?parseInt(document.getElementById('slash-menu').style.left):200)+'px';
+    picker.style.top=(slashRange?parseInt(document.getElementById('slash-menu').style.top):200)+'px';
     picker.classList.add('show');
-    document.getElementById('emoji-search').value='';
-    renderEmojiGrid(EMOJIS);
+    document.getElementById('emoji-search').value='';renderEmojiGrid(EMOJIS);
     setTimeout(()=>document.getElementById('emoji-search').focus(),50);
     return;
   }
-  // trigger save
-  const ed=document.activeElement;
-  if(ed) triggerSave(ed);
 }
-
-// keyboard navigation in slash menu
 document.addEventListener('keydown',e=>{
   if(!slashActive) return;
   const menu=document.getElementById('slash-menu');
   const items=menu.querySelectorAll('.slash-item');
-  if(e.key==='ArrowDown'){e.preventDefault();slashSelectedIdx=Math.min(slashSelectedIdx+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('selected',i===slashSelectedIdx));}
-  else if(e.key==='ArrowUp'){e.preventDefault();slashSelectedIdx=Math.max(slashSelectedIdx-1,0);items.forEach((el,i)=>el.classList.toggle('selected',i===slashSelectedIdx));}
-  else if(e.key==='Enter'){e.preventDefault();items[slashSelectedIdx]?.click();}
-  else if(e.key==='Escape'){closeSlash();}
+  if(e.key==='ArrowDown'){e.preventDefault();slashIdx=Math.min(slashIdx+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('sel',i===slashIdx));}
+  else if(e.key==='ArrowUp'){e.preventDefault();slashIdx=Math.max(slashIdx-1,0);items.forEach((el,i)=>el.classList.toggle('sel',i===slashIdx));}
+  else if(e.key==='Enter'&&slashActive){e.preventDefault();items[slashIdx]?.click();}
+  else if(e.key==='Escape') closeSlash();
 },true);
-
 document.addEventListener('click',e=>{
   if(!e.target.closest('#slash-menu')) closeSlash();
-  if(!e.target.closest('#emoji-picker')&&!e.target.closest('.slash-item[onclick*=emoji]')) document.getElementById('emoji-picker').classList.remove('show');
+  if(!e.target.closest('#emoji-picker')) document.getElementById('emoji-picker').classList.remove('show');
 });
 
-// ── IndexedDB ──────────────────────────────────────────────
-const DB='alplab4',ST='notes';let db;
-function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=e=>e.target.result.createObjectStore(ST);r.onsuccess=e=>{db=e.target.result;res()};r.onerror=rej})}
-function dbGet(k){return new Promise(r=>{const req=db.transaction(ST,'readonly').objectStore(ST).get(k);req.onsuccess=()=>r(req.result??null)})}
-function dbSet(k,v){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).put(v,k);tx.oncomplete=r})}
-function dbAll(){return new Promise(r=>{const out=[];const req=db.transaction(ST,'readonly').objectStore(ST).openCursor();req.onsuccess=e=>{const c=e.target.result;if(c){out.push({k:c.key,v:c.value});c.continue()}else r(out)}})}
-function dbClear(){return new Promise(r=>{const tx=db.transaction(ST,'readwrite');tx.objectStore(ST).clear();tx.oncomplete=r})}
-
-// ── Notion-style editor factory ────────────────────────────
-// Stores innerHTML directly. Images embedded as <img src="data:...">
-let saveTimers={};
-
-function triggerSave(ed){
-  if(!ed) return;
-  const sid=ed.id?.replace('ne-','');
-  if(!sid) return;
-  clearTimeout(saveTimers[sid]);
-  saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
-}
-
-function mountEditor(sid, container){
-  if(container.querySelector('.notion-wrap')) return;
-  const wrap=document.createElement('div');
-  wrap.className='notion-wrap';
-  wrap.innerHTML=`<div class="notion-hint">📝 자유롭게 입력 · / 로 명령어 · Ctrl+V 스크린샷 · 이미지 드래그</div><div class="notion-editor" contenteditable="true" spellcheck="false" id="ne-${sid}"></div>`;
-  container.appendChild(wrap);
-
-  const ed=wrap.querySelector('.notion-editor');
-
-  // load saved content
-  dbGet('n:'+sid).then(html=>{ if(html) ed.innerHTML=html; bindImgClicks(ed); });
-
-  // auto-save + slash detection
-  ed.addEventListener('keyup',e=>{
-    if(slashActive){
-      if(e.key===' '||e.key==='Escape'){closeSlash();return;}
-      // update query
-      const sel=window.getSelection();
-      if(sel&&sel.rangeCount&&slashRange){
-        const cur=sel.getRangeAt(0);
-        const node=cur.startContainer;
-        if(node.nodeType===3){
-          const txt=node.textContent;
-          const slashPos=txt.lastIndexOf('/');
-          if(slashPos>=0){
-            slashQuery=txt.slice(slashPos+1, cur.startOffset);
-            renderSlashMenu(slashQuery);
-          }
-        }
-      }
-    }
-  });
-  // ── bullet: "- " → <ul><li>, Tab = indent, Shift+Tab = outdent ──
-  ed.addEventListener('keydown',e=>{
-    if(e.key===' '){
-      const sel=window.getSelection();
-      if(!sel||!sel.rangeCount) return;
-      const range=sel.getRangeAt(0);
-      const node=range.startContainer;
-      if(node.nodeType!==3) return;
-      const txt=node.textContent.slice(0,range.startOffset);
-      // detect "- " pattern at start of line
-      if(/^-$/.test(txt.trimStart())&&txt.trimStart()==='-'){
-        e.preventDefault();
-        // replace the "-" with a list item
-        const block=node.parentElement;
-        const ul=document.createElement('ul');
-        const li=document.createElement('li');
-        li.innerHTML='<br>';
-        ul.appendChild(li);
-        // remove the "-" text
-        node.textContent=node.textContent.slice(0,range.startOffset-1)+node.textContent.slice(range.startOffset);
-        if(block.textContent.trim()===''||block.innerHTML==='<br>'){
-          block.replaceWith(ul);
-        } else {
-          block.after(ul);
-        }
-        // place cursor in new li
-        const r=document.createRange();
-        r.setStart(li,0);r.collapse(true);
-        sel.removeAllRanges();sel.addRange(r);
-        triggerSave(ed);
-        return;
-      }
-    }
-    if(e.key==='Tab'){
-      // check if we're inside a list item
-      const sel=window.getSelection();
-      if(!sel||!sel.rangeCount) return;
-      const li=sel.anchorNode.nodeType===3
-        ?sel.anchorNode.parentElement?.closest('li')
-        :sel.anchorNode.closest?.('li');
-      if(li){
-        e.preventDefault();
-        if(e.shiftKey){
-          document.execCommand('outdent',false,null);
-        } else {
-          document.execCommand('indent',false,null);
-        }
-        triggerSave(ed);
-        return;
-      }
-      // not in list: insert 2 spaces
-      e.preventDefault();
-      document.execCommand('insertText',false,'  ');
-      triggerSave(ed);
-    }
-    // Enter in empty list item → exit list
-    if(e.key==='Enter'){
-      const sel=window.getSelection();
-      if(!sel||!sel.rangeCount) return;
-      const li=sel.anchorNode.nodeType===3
-        ?sel.anchorNode.parentElement?.closest('li')
-        :sel.anchorNode.closest?.('li');
-      if(li&&li.textContent.trim()===''){
-        e.preventDefault();
-        const ul=li.closest('ul');
-        const p=document.createElement('p');
-        p.innerHTML='<br>';
-        li.remove();
-        if(ul.querySelectorAll('li').length===0) ul.replaceWith(p);
-        else ul.after(p);
-        const r=document.createRange();
-        r.setStart(p,0);r.collapse(true);
-        sel.removeAllRanges();sel.addRange(r);
-        triggerSave(ed);
-      }
-    }
-  });
-
-  ed.addEventListener('keyup',e=>{
-    if(e.key==='/' && !slashActive){
-      const sel=window.getSelection();
-      if(!sel||!sel.rangeCount) return;
-      const range=sel.getRangeAt(0);
-      const rect=range.getBoundingClientRect();
-      if(rect.width===0&&rect.height===0){
-        // fallback: use editor rect
-        const er=ed.getBoundingClientRect();
-        openSlashMenu(ed,{left:er.left+8,bottom:er.top+24,right:er.left+8});
-      } else {
-        openSlashMenu(ed, rect);
-      }
-    }
-  });
-  ed.addEventListener('input',()=>triggerSave(ed));
-
-  // ── paste: intercept images ──
-  ed.addEventListener('paste',e=>{
-    const items=[...(e.clipboardData?.items||[])];
-    const imgItem=items.find(i=>i.type.startsWith('image/'));
-    if(!imgItem) return; // let browser handle text paste normally
-    e.preventDefault();
-    const file=imgItem.getAsFile();
-    readAndInsertImg(ed, file, sid);
-  });
-
-  // ── drag & drop images ──
-  ed.addEventListener('dragover',e=>{e.preventDefault();ed.classList.add('drop-active')});
-  ed.addEventListener('dragleave',()=>ed.classList.remove('drop-active'));
-  ed.addEventListener('drop',e=>{
-    e.preventDefault();ed.classList.remove('drop-active');
-    const files=[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/'));
-    files.forEach(f=>readAndInsertImg(ed,f,sid));
-  });
-
-  // click image → lightbox
-  ed.addEventListener('click',e=>{
-    if(e.target.tagName==='IMG') openLb(e.target.src);
+// ── Emoji ──────────────────────────────────────────────────
+const EMOJIS=[
+  {e:'😀',k:'웃음'},{e:'😊',k:'미소'},{e:'😍',k:'사랑 하트'},{e:'🥰',k:'사랑 귀여움'},{e:'😎',k:'멋짐'},{e:'🤔',k:'생각'},
+  {e:'😅',k:'당황'},{e:'😂',k:'웃음 눈물'},{e:'😭',k:'슬픔'},{e:'😱',k:'놀람'},{e:'😤',k:'화남'},{e:'🙏',k:'감사 부탁'},
+  {e:'👍',k:'좋아요'},{e:'👎',k:'싫어요'},{e:'✅',k:'완료 체크'},{e:'❌',k:'취소'},{e:'⚠️',k:'경고 주의'},
+  {e:'📌',k:'핀 중요'},{e:'📎',k:'첨부'},{e:'📋',k:'복사'},{e:'📞',k:'전화'},{e:'📦',k:'택배 배송'},
+  {e:'💰',k:'돈 금액'},{e:'🔍',k:'검색'},{e:'💡',k:'아이디어'},{e:'🚨',k:'긴급'},
+  {e:'🟢',k:'초록 원'},{e:'🔵',k:'파란 원'},{e:'🟡',k:'노란 원'},{e:'🔴',k:'빨간 원'},
+  {e:'⭐',k:'별 중요'},{e:'🔥',k:'불 핫'},{e:'💬',k:'말풍선'},{e:'📝',k:'메모'},
+  {e:'🔔',k:'알림 벨'},{e:'✏️',k:'연필'},{e:'📸',k:'사진'},
+  {e:'➡️',k:'화살표 오른쪽'},{e:'⬇️',k:'화살표 아래'},{e:'🔁',k:'반복'},
+  {e:'1️⃣',k:'1번'},{e:'2️⃣',k:'2번'},{e:'3️⃣',k:'3번'},{e:'4️⃣',k:'4번'},{e:'5️⃣',k:'5번'},
+];
+function renderEmojiGrid(list){
+  document.getElementById('emoji-grid').innerHTML=list.map(em=>`<button class="emoji-btn" title="${em.k}">${em.e}</button>`).join('');
+  document.getElementById('emoji-grid').querySelectorAll('.emoji-btn').forEach((btn,i)=>{
+    btn.addEventListener('click',()=>pickEmoji(list[i].e));
   });
 }
-
-function readAndInsertImg(ed, file, sid){
-  const reader=new FileReader();
-  reader.onload=ev=>{
-    const img=document.createElement('img');
-    img.src=ev.target.result;
-    // insert at cursor or at end
-    const sel=window.getSelection();
-    if(sel&&sel.rangeCount&&ed.contains(sel.anchorNode)){
-      const range=sel.getRangeAt(0);
-      range.collapse(false);
-      range.insertNode(img);
-      // move cursor after image
-      range.setStartAfter(img);range.collapse(true);
-      sel.removeAllRanges();sel.addRange(range);
-    } else {
-      ed.appendChild(img);
-    }
-    clearTimeout(saveTimers[sid]);
-    saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
-  };
-  reader.readAsDataURL(file);
-}
-
-function bindImgClicks(ed){
-  ed.querySelectorAll('img').forEach(img=>{
-    img.style.cursor='zoom-in';
-  });
+function filterEmoji(q){const f=q.trim().toLowerCase();renderEmojiGrid(f?EMOJIS.filter(e=>e.k.includes(f)):EMOJIS);}
+function pickEmoji(em){
+  document.getElementById('emoji-picker').classList.remove('show');
+  if(emojiRange){const sel=window.getSelection();sel.removeAllRanges();sel.addRange(emojiRange);}
+  document.execCommand('insertText',false,em);
 }
 
 // ── Lightbox ───────────────────────────────────────────────
-function openLb(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('open')}
-function closeLb(){document.getElementById('lb').classList.remove('open')}
+function openLb(src){document.getElementById('lbimg').src=src;document.getElementById('lb').classList.add('open');}
+function closeLb(){document.getElementById('lb').classList.remove('open');}
 
 // ── Export / Import ────────────────────────────────────────
 async function exportData(){
   const all=await dbAll();
   const a=document.createElement('a');
-  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({v:4,data:all}));
-  a.download='alplab-cs-'+new Date().toISOString().slice(0,10)+'.json';
-  a.click();
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify({v:5,data:all}));
+  a.download='alplab-cs-'+new Date().toISOString().slice(0,10)+'.json';a.click();
 }
 async function importData(e){
   const f=e.target.files[0];if(!f)return;
   try{
-    const txt=await f.text(),p=JSON.parse(txt);
-    if(!p.data){alert('파일을 읽을 수 없습니다.');return}
+    const p=JSON.parse(await f.text());
+    if(!p.data){alert('파일을 읽을 수 없습니다.');return;}
     await dbClear();
     for(const entry of p.data) await dbSet(entry.k,entry.v);
-    // reload all editors
     document.querySelectorAll('.notion-wrap').forEach(w=>w.remove());
-    initAllEditors();
-    document.querySelectorAll('.tmpl-card.open').forEach(c=>{
-      const code=c.id.replace('card-','');
-      const tbody=document.getElementById('tbody-'+code);
-      if(tbody) mountEditor('t-'+code, tbody);
-    });
+    ALL_FCS.forEach(fcId=>renderSteps(fcId));
+    renderTmpl(T);
     alert('✅ 불러오기 완료!');
-  }catch(err){alert('파일을 읽을 수 없습니다.')}
+  }catch(err){alert('파일을 읽을 수 없습니다.');}
   e.target.value='';
 }
 
 // ── Nav ────────────────────────────────────────────────────
 const FT={cafe24:['카페24','채널별 케이스 유형을 선택하고 단계별로 처리하세요'],naver:['네이버 스마트스토어','고객문의 탭 / 톡톡 탭 공통 플로우'],naverpay:['네이버 페이','판매자센터 별도 채널에서 처리'],coupang:['쿠팡','쿠팡 Wing 판매자 센터에서 처리'],kakao:['카카오채널','채팅 탭에서 확인 후 답변'],phone:['고객 전화','콜백 or 즉시 답변 후 채널 플로우로 처리']};
-function goTo(type,id,el){closeSb();document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');if(type==='flow'){document.getElementById('sec-flow').classList.add('active');document.getElementById('sec-tmpl').classList.remove('active');document.querySelectorAll('.flow-panel').forEach(p=>p.classList.remove('active'));document.getElementById('fp-'+id).classList.add('active');document.getElementById('flow-title').textContent=FT[id][0];document.getElementById('flow-desc').textContent=FT[id][1];}else{document.getElementById('sec-tmpl').classList.add('active');document.getElementById('sec-flow').classList.remove('active');setCatById(id);}window.scrollTo(0,0);}
-function showCase(ch,cs,el){const fp=document.getElementById('fp-'+ch);fp.querySelectorAll('.case-chip').forEach(c=>c.classList.remove('active'));fp.querySelectorAll('.flow-case').forEach(f=>f.classList.remove('active'));el.classList.add('active');document.getElementById(ch+'-'+cs).classList.add('active');}
+function goTo(type,id,el){
+  closeSb();
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');
+  if(type==='flow'){
+    document.getElementById('sec-flow').classList.add('active');document.getElementById('sec-tmpl').classList.remove('active');
+    document.querySelectorAll('.flow-panel').forEach(p=>p.classList.remove('active'));document.getElementById('fp-'+id).classList.add('active');
+    document.getElementById('flow-title').textContent=FT[id][0];document.getElementById('flow-desc').textContent=FT[id][1];
+  }else{
+    document.getElementById('sec-tmpl').classList.add('active');document.getElementById('sec-flow').classList.remove('active');setCatById(id);
+  }
+  window.scrollTo(0,0);
+}
+function showCase(ch,cs,el){
+  const fp=document.getElementById('fp-'+ch);
+  fp.querySelectorAll('.case-chip').forEach(c=>c.classList.remove('active'));
+  fp.querySelectorAll('.flow-case').forEach(f=>f.classList.remove('active'));
+  el.classList.add('active');document.getElementById(ch+'-'+cs).classList.add('active');
+}
 
 // ── Templates ──────────────────────────────────────────────
 let curCat='all';
 function setCat(cat,el){curCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');filterTmpl();}
 function setCatById(cat){curCat=cat;document.querySelectorAll('.cat-btn').forEach(b=>b.classList.toggle('active',b.textContent.startsWith(cat==='all'?'전체':cat)));filterTmpl();}
-function filterTmpl(){const q=(document.getElementById('search').value||'').trim().toLowerCase();let list=T;if(curCat!=='all')list=list.filter(t=>t.cat===curCat);if(q)list=list.filter(t=>(t.title+t.kw+t.code).toLowerCase().includes(q));renderTmpl(list);}
-
+function filterTmpl(){
+  const q=(document.getElementById('search').value||'').trim().toLowerCase();
+  let list=T;if(curCat!=='all')list=list.filter(t=>t.cat===curCat);
+  if(q)list=list.filter(t=>(t.title+t.kw+t.code).toLowerCase().includes(q));
+  renderTmpl(list);
+}
 const T=[
   {code:'A-01',cat:'A',title:'바르는 순서',kw:'순서 토너 로션 크림',text:'고객님 안녕하세요\n스킨토너 → 알프스 앰플 → 로션/크림\n순으로 발라주시는 걸 권장드립니다.\n\n감사합니다'},
   {code:'A-02',cat:'A',title:'아침/저녁 사용 (밤/낮)',kw:'아침 저녁 낮 밤 선크림',text:'고객님 안녕하세요\n알프스 앰플은 아침/저녁 모두 사용 가능하지만\n아침에 바르는 경우 선크림을 같이 발라주시는 걸 권장드립니다.\n\n감사합니다'},
@@ -794,195 +751,36 @@ const CL={A:'사용법',B:'제품 관련',C:'주문/배송',D:'결제/환불',E:
 
 function renderTmpl(list){
   const el=document.getElementById('tmpl-list');
-  if(!list.length){el.innerHTML='<div class="no-result">검색 결과가 없습니다</div>';return}
-  el.innerHTML=list.map(t=>`
-    <div class="tmpl-card" id="card-${t.code}">
-      <div class="tmpl-head" onclick="togCard('${t.code}')">
-        <span class="tmpl-code">${t.code}</span>
-        <span class="tmpl-title">${t.title}</span>
-        <span class="tmpl-cat">${CL[t.cat]}</span>
-        <span class="tmpl-arrow">▼</span>
-      </div>
-      <div class="tmpl-body" id="tbody-${t.code}">
-        <div class="tmpl-text">${esc(t.text)}</div>
-        <button class="copy-btn" onclick="cpT('${t.code}',this)">📋 복사</button>
-      </div>
-    </div>`).join('');
-}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function togCard(code){
-  const card=document.getElementById('card-'+code);
-  card.classList.toggle('open');
-  if(card.classList.contains('open')){
-    const tbody=document.getElementById('tbody-'+code);
-    mountEditor('t-'+code, tbody);
-  }
-}
-function cpT(code,btn){
-  const raw=T.find(t=>t.code===code).text;
-  navigator.clipboard.writeText(raw).then(()=>{btn.textContent='✓ 복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied')},2000)});
-}
-
-// ── Init step editors ──────────────────────────────────────
-function initAllEditors(){
-  document.querySelectorAll('[data-sid]').forEach(el=>{
-    const sid=el.dataset.sid;
-    const body=el.querySelector('.step-body');
-    if(body) mountEditor(sid,body);
-  });
-}
-
-function openSb(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbo').classList.add('open')}
-function closeSb(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbo').classList.remove('open')}
-
-// ── Step management ───────────────────────────────────────
-const STEP_COLORS=['gray','blue','teal','amber','coral'];
-
-function getFlowCase(sid){
-  return document.querySelector('[data-sid="'+sid+'"]')?.closest('.flow-case');
-}
-function getAllSteps(flowCase){
-  return [...flowCase.querySelectorAll('[data-sid]')];
-}
-
-async function delStep(sid){
-  if(!confirm('이 스텝을 삭제할까요?')) return;
-  const el=document.querySelector('[data-sid="'+sid+'"]');
-  if(!el) return;
-  const fc=el.closest('.flow-case')||el.closest('.flow-panel');
-  el.style.display='none';
-  // renumber visible steps
-  const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
-  visible.forEach((s,i)=>{
-    const num=s.querySelector('.step-num');
-    if(num) num.textContent=i+1;
-    const line=s.querySelector('.step-line');
-    if(line) line.style.display=i===visible.length-1?'none':'block';
-  });
-  // persist per-step hidden state
-  await dbSet('hidden:'+sid, true);
-}
-
-function delCallout(btn){
-  if(!confirm('이 메모를 삭제할까요?')) return;
-  btn.closest('.callout-wrap').remove();
-}
-
-function addStepAfter(sid){
-  const ref=document.querySelector('[data-sid="'+sid+'"]');
-  if(!ref) return;
-  const newSid='s'+Date.now();
-  const el=makeStepEl(newSid,'gray','새 스텝','설명을 입력하세요');
-  ref.after(el);
-  mountEditor(newSid, el.querySelector('.step-body'));
-  initStepEditable(el);
-  el.querySelector('.step-label').focus();
-  saveStepOrder(ref.closest('.flow-case'));
-}
-
-function addStepToCase(btn){
-  const fc=btn.closest('.flow-case')||btn.closest('.flow-panel');
-  const steps=fc.querySelector('.steps');
-  if(!steps) return;
-  const newSid='s'+Date.now();
-  const el=makeStepEl(newSid,'gray','새 스텝','설명을 입력하세요');
-  steps.appendChild(el);
-  mountEditor(newSid, el.querySelector('.step-body'));
-  initStepEditable(el);
-  el.querySelector('.step-label').focus();
-  saveStepOrder(fc);
-}
-
-function makeStepEl(sid, color, label, desc){
-  const div=document.createElement('div');
-  div.className='step '+color;
-  div.dataset.sid=sid;
-  div.innerHTML=`
-    <div class="step-spine"><div class="step-num">·</div><div class="step-line"></div></div>
-    <div class="step-body">
-      <div class="step-label" contenteditable="true" spellcheck="false">${label}</div>
-      <div class="step-desc" contenteditable="true" spellcheck="false">${desc}</div>
-    </div>
-    <div class="step-actions">
-      <button class="step-add-btn" onclick="addStepAfter('${sid}')" title="아래에 스텝 추가">+</button>
-      <button class="step-del-btn" onclick="delStep('${sid}')" title="스텝 삭제">×</button>
-    </div>`;
-  return div;
-}
-
-function saveStepOrder(fc){
-  if(!fc) return;
-  // renumber step circles
-  fc.querySelectorAll('[data-sid] .step-num').forEach((el,i)=>{el.textContent=i+1;});
-  // update last-child line
-  const steps=[...fc.querySelectorAll('[data-sid]')];
-  steps.forEach((s,i)=>{
-    const line=s.querySelector('.step-line');
-    if(line) line.style.display=i===steps.length-1?'none':'block';
-  });
-}
-
-function initStepEditable(el){
-  const sid=el.dataset.sid;
-  ['label','desc'].forEach(role=>{
-    const target=el.querySelector('.step-'+role);
-    if(!target) return;
-    const key='st:'+sid+':'+role;
-    target.addEventListener('input',()=>{
-      clearTimeout(target._t);
-      target._t=setTimeout(()=>dbSet(key,target.textContent),500);
+  if(!list.length){el.innerHTML='<div class="no-result">검색 결과가 없습니다</div>';return;}
+  el.innerHTML='';
+  list.forEach(t=>{
+    const card=document.createElement('div');card.className='tmpl-card';card.id='card-'+t.code;
+    const head=document.createElement('div');head.className='tmpl-head';
+    head.innerHTML=`<span class="tmpl-code">${t.code}</span><span class="tmpl-title">${t.title}</span><span class="tmpl-cat">${CL[t.cat]}</span><span class="tmpl-arrow">▼</span>`;
+    const body=document.createElement('div');body.className='tmpl-body';body.id='tbody-'+t.code;
+    const txt=document.createElement('div');txt.className='tmpl-text';txt.textContent=t.text;
+    const btn=document.createElement('button');btn.className='copy-btn';btn.textContent='📋 복사';
+    btn.addEventListener('click',()=>{
+      navigator.clipboard.writeText(t.text).then(()=>{btn.textContent='✓ 복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='📋 복사';btn.classList.remove('copied');},2000);});
     });
-    target.addEventListener('keydown',e=>{
-      if(e.key==='Enter'){e.preventDefault();target.blur();}
+    body.appendChild(txt);body.appendChild(btn);
+    head.addEventListener('click',()=>{
+      card.classList.toggle('open');
+      if(card.classList.contains('open')) mountEditor('t-'+t.code,body);
     });
+    card.appendChild(head);card.appendChild(body);
+    el.appendChild(card);
   });
 }
 
+function openSb(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbo').classList.add('open');}
+function closeSb(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbo').classList.remove('open');}
+
+// ── Init ───────────────────────────────────────────────────
 openDB().then(()=>{
+  ALL_FCS.forEach(fcId=>renderSteps(fcId));
   renderTmpl(T);
-  initAllEditors();
-  initEditableSteps();
-  initCallouts();
 });
-
-function initCallouts(){
-  document.querySelectorAll('.callout[contenteditable]').forEach((el,i)=>{
-    const key='callout:'+i;
-    dbGet(key).then(val=>{ if(val) el.textContent=val; });
-    el.addEventListener('input',()=>{
-      clearTimeout(el._t);
-      el._t=setTimeout(()=>dbSet(key, el.textContent),500);
-    });
-  });
-}
-function initEditableSteps(){
-  document.querySelectorAll('[data-sid]').forEach(step=>{
-    const sid=step.dataset.sid;
-    // check hidden state
-    dbGet('hidden:'+sid).then(hidden=>{
-      if(hidden){ step.style.display='none'; renumberAll(); return; }
-      // load saved label/desc
-      ['label','desc'].forEach(role=>{
-        const el=step.querySelector('.step-'+role);
-        if(!el) return;
-        dbGet('st:'+sid+':'+role).then(val=>{ if(val) el.textContent=val; });
-      });
-      initStepEditable(step);
-    });
-  });
-  renumberAll();
-}
-function renumberAll(){
-  document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>{
-    const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
-    visible.forEach((s,i)=>{
-      const num=s.querySelector('.step-num');
-      if(num) num.textContent=i+1;
-      const line=s.querySelector('.step-line');
-      if(line) line.style.display=i===visible.length-1?'none':'block';
-    });
-  });
-}
 </script>
 </body>
 </html>
