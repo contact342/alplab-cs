@@ -100,7 +100,11 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .notion-editor{min-height:40px;outline:none;font-size:13px;line-height:1.8;color:var(--tx);border-radius:var(--rs);padding:6px 8px;transition:background .12s;cursor:text;word-break:break-word}
 .notion-editor:focus{background:var(--sur2)}
 .notion-editor:empty::before{content:'텍스트 입력 또는 Ctrl+V 스크린샷...';color:var(--tx3);pointer-events:none}
-.notion-editor img{max-width:100%;max-height:400px;border-radius:var(--rs);border:1px solid var(--bd);display:block;margin:6px 0;cursor:zoom-in;object-fit:contain}
+.notion-editor img{max-width:100%;max-height:400px;border-radius:var(--rs);border:1px solid var(--bd);display:block;margin:6px 0;cursor:grab;object-fit:contain;transition:opacity .15s}
+.notion-editor img:hover{border-color:var(--bds)}
+.notion-editor img.img-dragging{opacity:.4;cursor:grabbing}
+.img-drop-indicator{height:3px;background:var(--ac);border-radius:2px;margin:2px 0;display:none}
+.img-drop-indicator.active{display:block}
 .notion-editor h1{font-size:20px;font-weight:700;margin:6px 0 2px}
 .notion-editor h2{font-size:16px;font-weight:600;margin:4px 0 2px}
 .notion-editor ul{padding-left:20px;margin:2px 0}
@@ -540,7 +544,52 @@ function mountEditor(sid,container){
     }
   },true);
 
-  ed.addEventListener('click',e=>{if(e.target.tagName==='IMG') openLb(e.target.src);});
+  // image: click = zoom, drag = reorder
+  let dragSrcImg=null;
+  ed.addEventListener('mousedown',e=>{
+    if(e.target.tagName==='IMG') e.target.setAttribute('draggable','true');
+  });
+  ed.addEventListener('dragstart',e=>{
+    if(e.target.tagName!=='IMG') return;
+    dragSrcImg=e.target;
+    e.target.classList.add('img-dragging');
+    e.dataTransfer.effectAllowed='move';
+    e.dataTransfer.setData('text/plain','img');
+    e.stopPropagation();
+  });
+  ed.addEventListener('dragend',e=>{
+    if(e.target.tagName!=='IMG') return;
+    e.target.classList.remove('img-dragging');
+    ed.querySelectorAll('.img-drop-indicator').forEach(el=>el.remove());
+    dragSrcImg=null;
+  });
+  ed.addEventListener('dragover',e=>{
+    if(!dragSrcImg) return;
+    e.preventDefault();e.stopPropagation();
+    ed.querySelectorAll('.img-drop-indicator').forEach(el=>el.classList.remove('active'));
+    const target=e.target.closest('img');
+    if(target&&target!==dragSrcImg){
+      let ind=target.previousSibling;
+      if(!ind||!ind.classList?.contains('img-drop-indicator')){
+        ind=document.createElement('div');ind.className='img-drop-indicator';
+        target.before(ind);
+      }
+      ind.classList.add('active');
+    }
+  });
+  ed.addEventListener('drop',e=>{
+    if(!dragSrcImg) return;
+    e.preventDefault();e.stopPropagation();
+    const target=e.target.closest('img');
+    if(target&&target!==dragSrcImg){
+      target.before(dragSrcImg);
+    }
+    ed.querySelectorAll('.img-drop-indicator').forEach(el=>el.remove());
+    clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
+  });
+  ed.addEventListener('click',e=>{
+    if(e.target.tagName==='IMG'&&!e.target.classList.contains('img-dragging')) openLb(e.target.src);
+  });
 
   // bullet: "- " → list
   ed.addEventListener('keydown',e=>{
