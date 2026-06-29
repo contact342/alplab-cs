@@ -691,7 +691,25 @@ function runSlash(action){
     sel.addRange(r);document.execCommand('delete',false,null);
   }
   if(action==='h1'||action==='h2'||action==='p'){
-    document.execCommand('formatBlock',false,action==='p'?'p':action);
+    const sel=window.getSelection();
+    if(!sel||!sel.rangeCount) return;
+    const range=sel.getRangeAt(0);
+    const node=range.startContainer;
+    // find the current block element
+    let block=node.nodeType===3?node.parentElement:node;
+    // go up to find block-level element inside contenteditable
+    while(block&&block.contentEditable!=='true'&&block.parentElement&&block.parentElement.contentEditable!=='true'){
+      block=block.parentElement;
+    }
+    if(!block) return;
+    const tag=action==='p'?'div':action;
+    const newEl=document.createElement(tag);
+    newEl.innerHTML=block.innerHTML||'<br>';
+    block.replaceWith(newEl);
+    // restore cursor
+    const r=document.createRange();
+    r.selectNodeContents(newEl);r.collapse(false);
+    sel.removeAllRanges();sel.addRange(r);
   }
   else if(action==='bold') document.execCommand('bold',false,null);
   else if(action==='italic') document.execCommand('italic',false,null);
