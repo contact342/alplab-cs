@@ -744,7 +744,7 @@ async function importData(e){
   const f=e.target.files[0];if(!f)return;
   try{
     const txt=await f.text(),p=JSON.parse(txt);
-    if(p.v!==4){alert('이 파일은 이전 버전입니다. 최신 버전으로 내보내기 후 사용해주세요.');return}
+    if(!p.data){alert('파일을 읽을 수 없습니다.');return}
     await dbClear();
     for(const entry of p.data) await dbSet(entry.k,entry.v);
     // reload all editors
@@ -859,10 +859,8 @@ async function delStep(sid){
     const line=s.querySelector('.step-line');
     if(line) line.style.display=i===visible.length-1?'none':'block';
   });
-  // persist deletion list
-  const deleted=await dbGet('deleted-steps')||[];
-  if(!deleted.includes(sid)) deleted.push(sid);
-  await dbSet('deleted-steps', deleted);
+  // persist per-step hidden state
+  await dbSet('hidden:'+sid, true);
 }
 
 function delCallout(btn){
@@ -958,12 +956,13 @@ function initCallouts(){
   });
 }
 async function initEditableSteps(){
-  const deleted=await dbGet('deleted-steps')||[];
-  document.querySelectorAll('[data-sid]').forEach(step=>{
+  // load each step's hidden state individually
+  const steps=[...document.querySelectorAll('[data-sid]')];
+  await Promise.all(steps.map(async step=>{
     const sid=step.dataset.sid;
-    // only remove if this specific sid is deleted
-    if(deleted.includes(sid)){
-      step.style.display='none';  // hide instead of remove so DOM stays intact
+    const hidden=await dbGet('hidden:'+sid);
+    if(hidden){
+      step.style.display='none';
       return;
     }
     ['label','desc'].forEach(role=>{
@@ -973,7 +972,7 @@ async function initEditableSteps(){
       dbGet(key).then(val=>{ if(val) el.textContent=val; });
     });
     initStepEditable(step);
-  });
+  }));
   // fix step numbering per flow-case (only visible steps)
   document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>{
     const visible=[...fc.querySelectorAll('[data-sid]')].filter(s=>s.style.display!=='none');
