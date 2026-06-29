@@ -424,17 +424,21 @@ let slashRange=null, slashQuery='', slashSelectedIdx=0, slashActive=false;
 
 function openSlashMenu(ed, caretRect){
   slashActive=true; slashQuery=''; slashSelectedIdx=0;
-  // save range
   const sel=window.getSelection();
   if(sel&&sel.rangeCount) slashRange=sel.getRangeAt(0).cloneRange();
   emojiSavedRange=slashRange;
   renderSlashMenu('');
   const menu=document.getElementById('slash-menu');
-  // position below caret
-  let left=caretRect.left;
-  let top=caretRect.bottom+window.scrollY+4;
-  // keep in viewport
-  if(left+240>window.innerWidth) left=window.innerWidth-248;
+  // position: prefer below caret, fallback to editor position
+  const bottom = caretRect.bottom||caretRect.top||0;
+  let left = caretRect.left||0;
+  let top = bottom + window.scrollY + 6;
+  if(top===window.scrollY+6){
+    // rect was empty, use editor
+    const er=ed.getBoundingClientRect();
+    left=er.left+8; top=er.bottom+window.scrollY+4;
+  }
+  if(left+240>window.innerWidth) left=Math.max(4,window.innerWidth-248);
   menu.style.left=left+'px';
   menu.style.top=top+'px';
   menu.classList.add('show');
@@ -571,16 +575,19 @@ function mountEditor(sid, container){
       }
     }
   });
-  ed.addEventListener('keydown',e=>{
+  ed.addEventListener('keyup',e=>{
     if(e.key==='/' && !slashActive){
-      // get caret rect
-      setTimeout(()=>{
-        const sel=window.getSelection();
-        if(!sel||!sel.rangeCount) return;
-        const range=sel.getRangeAt(0);
-        const rect=range.getBoundingClientRect();
+      const sel=window.getSelection();
+      if(!sel||!sel.rangeCount) return;
+      const range=sel.getRangeAt(0);
+      const rect=range.getBoundingClientRect();
+      if(rect.width===0&&rect.height===0){
+        // fallback: use editor rect
+        const er=ed.getBoundingClientRect();
+        openSlashMenu(ed,{left:er.left+8,bottom:er.top+24,right:er.left+8});
+      } else {
         openSlashMenu(ed, rect);
-      },0);
+      }
     }
   });
   ed.addEventListener('input',()=>triggerSave(ed));
