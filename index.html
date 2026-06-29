@@ -33,14 +33,15 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .case-chip.active{background:var(--sur);border-color:var(--bds);color:var(--tx);font-weight:500}
 .flow-case{display:none}.flow-case.active{display:block}
 .steps{padding:4px 0}
-.step{display:flex;gap:14px}
+.step{display:flex;gap:14px;align-items:flex-start}
+.step:hover{background:var(--sur2);border-radius:var(--rs);margin:0 -8px;padding:0 8px}
 .step-spine{display:flex;flex-direction:column;align-items:center}
 .step-num{width:30px;height:30px;border-radius:50%;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .step-line{width:1px;flex:1;min-height:10px;background:var(--bd);margin:3px 0}
 .step:last-child .step-line{display:none}
 .step-body{padding-bottom:20px;padding-top:4px;flex:1;min-width:0}
 .step-label{font-size:13px;font-weight:600;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
-.step-actions{display:none;gap:4px;margin-left:auto;flex-shrink:0;align-items:center}
+.step-actions{display:none;gap:4px;margin-left:auto;flex-shrink:0;align-items:center;padding-top:6px}
 .step:hover .step-actions{display:flex}
 .step-del-btn,.step-add-btn{width:20px;height:20px;border:none;border-radius:4px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .12s;padding:0}
 .step-del-btn{background:var(--cob);color:var(--co)}
@@ -258,7 +259,7 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
           <div class="step blue" data-sid="c24ca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca2')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca2')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">구매 취소 승인</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 주문관리 › 취소 승인 처리</div></div></div>
           <div class="step teal" data-sid="c24ca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 취소 사유 전달</div></div></div>
           <div class="step gray" data-sid="c24ca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24ca4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24ca4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">취소 완료 안내 → 템플릿 C-02 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn">⚠ 출고 이후 접수된 건은 반품 플로우로 전환</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
+        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 출고 이후 접수된 건은 반품 플로우로 전환</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
         
         <div class="flow-case" id="cafe24-return">
         <div class="steps">
@@ -268,7 +269,7 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
           <div class="step amber" data-sid="c24re4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
           <div class="step teal" data-sid="c24re5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re5')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re5')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부</div></div></div>
           <div class="step gray" data-sid="c24re6"><div class="step-spine"><div class="step-num">6</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24re6')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24re6')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">반품 안내 + 배송비 안내 → 템플릿 D-02 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn">⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
+        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
         
         <div class="flow-case" id="cafe24-refund">
         <div class="steps">
@@ -277,7 +278,7 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
           <div class="step coral" data-sid="c24rf3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf3')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf3')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
           <div class="step teal" data-sid="c24rf4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf4')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf4')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 전달</div></div></div>
           <div class="step gray" data-sid="c24rf5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div><div class="step-actions"><button class="step-add-btn" onclick="addStepAfter('c24rf5')" title="아래에 스텝 추가">+</button><button class="step-del-btn" onclick="delStep('c24rf5')" title="스텝 삭제">×</button></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 예정 안내 → 템플릿 D-03 사용</div></div></div></div>
-        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn">⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
+        <div class="callout-wrap"><div class="callout-wrap"><div class="callout warn" contenteditable="true" spellcheck="false">⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내</div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button></div><button class="callout-del" onclick="delCallout(this)" title="삭제">×</button>
         
         <div class="flow-case" id="cafe24-inq">
         <div class="steps">
@@ -933,8 +934,19 @@ openDB().then(()=>{
   renderTmpl(T);
   initAllEditors();
   initEditableSteps();
+  initCallouts();
 });
 
+function initCallouts(){
+  document.querySelectorAll('.callout[contenteditable]').forEach((el,i)=>{
+    const key='callout:'+i;
+    dbGet(key).then(val=>{ if(val) el.textContent=val; });
+    el.addEventListener('input',()=>{
+      clearTimeout(el._t);
+      el._t=setTimeout(()=>dbSet(key, el.textContent),500);
+    });
+  });
+}
 function initEditableSteps(){
   document.querySelectorAll('[data-sid]').forEach(step=>{
     const sid=step.dataset.sid;
