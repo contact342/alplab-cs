@@ -507,16 +507,38 @@ function mountEditor(sid,container){
     reader.readAsDataURL(file);
   });
 
-  ed.addEventListener('dragover',e=>{e.preventDefault();ed.classList.add('drop-active');});
-  ed.addEventListener('dragleave',()=>ed.classList.remove('drop-active'));
-  ed.addEventListener('drop',e=>{
-    e.preventDefault();ed.classList.remove('drop-active');
-    [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{
-      const reader=new FileReader();
-      reader.onload=ev=>{const img=document.createElement('img');img.src=ev.target.result;ed.appendChild(img);clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);};
-      reader.readAsDataURL(f);
+  function insertImg(target,src){
+    const img=document.createElement('img');img.src=src;
+    const sel=window.getSelection();
+    if(sel&&sel.rangeCount&&ed.contains(sel.anchorNode)){
+      const r=sel.getRangeAt(0);r.collapse(false);r.insertNode(img);
+      r.setStartAfter(img);r.collapse(true);sel.removeAllRanges();sel.addRange(r);
+    } else { target.appendChild(img); }
+    clearTimeout(saveTimers[sid]);saveTimers[sid]=setTimeout(()=>dbSet('n:'+sid,ed.innerHTML),600);
+  }
+  function bindDrop(target){
+    if(target._dd) return;
+    target._dd=true;
+    target.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();target.style.outline='2px dashed var(--ac)';target.style.background='var(--acb)';});
+    target.addEventListener('dragleave',()=>{target.style.outline='';target.style.background='';});
+    target.addEventListener('drop',e=>{
+      e.preventDefault();e.stopPropagation();
+      target.style.outline='';target.style.background='';
+      [...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{
+        const reader=new FileReader();
+        reader.onload=ev=>insertImg(target,ev.target.result);
+        reader.readAsDataURL(f);
+      });
     });
-  });
+  }
+  bindDrop(ed);
+  // bind drop inside toggle divs when they open
+  ed.addEventListener('toggle',e=>{
+    if(e.target.tagName==='DETAILS'&&e.target.open){
+      const inner=e.target.querySelector('[contenteditable]');
+      if(inner){inner.style.minHeight='40px';bindDrop(inner);}
+    }
+  },true);
 
   ed.addEventListener('click',e=>{if(e.target.tagName==='IMG') openLb(e.target.src);});
 
