@@ -105,6 +105,12 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .notion-editor h2{font-size:16px;font-weight:600;margin:4px 0 2px}
 .notion-editor ul{padding-left:20px;margin:2px 0}
 .notion-editor ul li{margin:1px 0;line-height:1.8}
+.notion-editor details{margin:4px 0;border-radius:var(--rs)}
+.notion-editor details summary{cursor:pointer;font-weight:500;padding:4px 6px;border-radius:var(--rs);list-style:none;display:flex;align-items:center;gap:6px;user-select:none}
+.notion-editor details summary::before{content:'▶';font-size:10px;color:var(--tx3);transition:transform .15s;flex-shrink:0}
+.notion-editor details[open] summary::before{transform:rotate(90deg)}
+.notion-editor details summary:hover{background:var(--sur2)}
+.notion-editor details>div{padding:4px 4px 4px 22px;min-height:20px;outline:none}
 .drop-active{background:var(--acb)!important;outline:2px dashed var(--ac)}
 /* slash menu */
 .slash-menu{position:fixed;background:var(--sur);border:1px solid var(--bd);border-radius:var(--r);box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:9100;min-width:220px;overflow:hidden;display:none}
@@ -618,7 +624,7 @@ function runSlash(action){
   else if(action==='hr') document.execCommand('insertHTML',false,'<hr style="border:none;border-top:1px solid var(--bd);margin:8px 0"><br>');
   else if(action==='toggle'){
     document.execCommand('insertHTML',false,
-      '<details style="margin:4px 0"><summary style="cursor:pointer;font-weight:500;padding:4px 0;list-style:none">▶ 토글 제목</summary><div style="padding:4px 4px 4px 16px;min-height:20px" contenteditable="true">내용을 입력하세요...</div></details><p><br></p>');
+      '<details><summary contenteditable="true">토글 제목을 입력하세요</summary><div contenteditable="true">내용을 입력하세요...</div></details><p><br></p>');
   }
   else if(action==='emoji'){
     const sel=window.getSelection();if(sel&&sel.rangeCount) emojiRange=sel.getRangeAt(0).cloneRange();
