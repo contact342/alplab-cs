@@ -845,14 +845,21 @@ function getAllSteps(flowCase){
   return [...flowCase.querySelectorAll('[data-sid]')];
 }
 
-function delStep(sid){
+async function delStep(sid){
   if(!confirm('이 스텝을 삭제할까요?')) return;
   const el=document.querySelector('[data-sid="'+sid+'"]');
   if(!el) return;
-  // delete saved data
-  dbSet('n:'+sid,null);dbSet('st:'+sid+':label',null);dbSet('st:'+sid+':desc',null);
+  const fc=el.closest('.flow-case')||el.closest('.flow-panel');
   el.remove();
-  saveStepOrder(el.closest('.flow-case'));
+  saveStepOrder(fc);
+  // persist deletion list
+  const deleted=await dbGet('deleted-steps')||[];
+  if(!deleted.includes(sid)) deleted.push(sid);
+  await dbSet('deleted-steps', deleted);
+  // also clear step data
+  await dbSet('n:'+sid, null);
+  await dbSet('st:'+sid+':label', null);
+  await dbSet('st:'+sid+':desc', null);
 }
 
 function delCallout(btn){
@@ -947,9 +954,15 @@ function initCallouts(){
     });
   });
 }
-function initEditableSteps(){
+async function initEditableSteps(){
+  const deleted=await dbGet('deleted-steps')||[];
   document.querySelectorAll('[data-sid]').forEach(step=>{
     const sid=step.dataset.sid;
+    // hide deleted steps
+    if(deleted.includes(sid)){
+      step.remove();
+      return;
+    }
     ['label','desc'].forEach(role=>{
       const el=step.querySelector('.step-'+role);
       if(!el) return;
@@ -957,7 +970,6 @@ function initEditableSteps(){
       dbGet(key).then(val=>{ if(val) el.textContent=val; });
     });
     initStepEditable(step);
-    // renumber
   });
   // fix step numbering per flow-case
   document.querySelectorAll('.flow-case,.flow-panel').forEach(fc=>saveStepOrder(fc));
