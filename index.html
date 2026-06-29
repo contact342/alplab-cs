@@ -39,8 +39,10 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
 .step-line{width:1px;flex:1;min-height:10px;background:var(--bd);margin:3px 0}
 .step:last-child .step-line{display:none}
 .step-body{padding-bottom:20px;padding-top:4px;flex:1;min-width:0}
-.step-label{font-size:13px;font-weight:600}
-.step-desc{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.5}
+.step-label{font-size:13px;font-weight:600;cursor:text;border-radius:3px;padding:1px 3px;margin:-1px -3px}
+.step-desc{font-size:12px;color:var(--tx2);margin-top:3px;line-height:1.5;cursor:text;border-radius:3px;padding:1px 3px;margin-left:-3px}
+.step-label:hover,.step-desc:hover{background:var(--sur2)}
+.step-label:focus,.step-desc:focus{background:var(--sur2);outline:none;box-shadow:0 0 0 2px var(--ac)}
 .step.gray .step-num{background:var(--sur2);color:var(--tx2)}
 .step.blue .step-num{background:var(--acb);color:var(--act)}
 .step.teal .step-num{background:var(--tlb);color:var(--tl)}
@@ -235,38 +237,38 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
       </div>
       <div class="flow-case active" id="cafe24-cancel">
         <div class="steps">
-          <div class="step gray" data-sid="c24ca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step blue" data-sid="c24ca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">구매 취소 승인</div><div class="step-desc">카페24 관리자 › 주문관리 › 취소 승인 처리</div></div></div>
-          <div class="step teal" data-sid="c24ca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 취소 사유 전달</div></div></div>
-          <div class="step gray" data-sid="c24ca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">취소 완료 안내 → 템플릿 C-02 사용</div></div></div>
+          <div class="step gray" data-sid="c24ca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step blue" data-sid="c24ca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">구매 취소 승인</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 주문관리 › 취소 승인 처리</div></div></div>
+          <div class="step teal" data-sid="c24ca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 취소 사유 전달</div></div></div>
+          <div class="step gray" data-sid="c24ca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">취소 완료 안내 → 템플릿 C-02 사용</div></div></div>
         </div>
         <div class="callout warn">⚠ 출고 이후 접수된 건은 반품 플로우로 전환</div>
       </div>
       <div class="flow-case" id="cafe24-return">
         <div class="steps">
-          <div class="step gray" data-sid="c24re1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step amber" data-sid="c24re2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">환불 조건 확인</div><div class="step-desc">도착일 14일 이내 / 절반 이상 잔여 / 공식 판매처 구매 여부</div></div></div>
-          <div class="step amber" data-sid="c24re3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">반품 관리 및 반품 승인</div><div class="step-desc">카페24 관리자 › 주문관리 › 반품 승인</div></div></div>
-          <div class="step amber" data-sid="c24re4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">이지어드민에서 회수 신청</div><div class="step-desc">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
-          <div class="step teal" data-sid="c24re5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부</div></div></div>
-          <div class="step gray" data-sid="c24re6"><div class="step-spine"><div class="step-num">6</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">반품 안내 + 배송비 안내 → 템플릿 D-02 사용</div></div></div>
+          <div class="step gray" data-sid="c24re1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step amber" data-sid="c24re2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">환불 조건 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">도착일 14일 이내 / 절반 이상 잔여 / 공식 판매처 구매 여부</div></div></div>
+          <div class="step amber" data-sid="c24re3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">반품 관리 및 반품 승인</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 주문관리 › 반품 승인</div></div></div>
+          <div class="step amber" data-sid="c24re4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
+          <div class="step teal" data-sid="c24re5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 / 왕복 배송비 차감 여부</div></div></div>
+          <div class="step gray" data-sid="c24re6"><div class="step-spine"><div class="step-num">6</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">반품 안내 + 배송비 안내 → 템플릿 D-02 사용</div></div></div>
         </div>
         <div class="callout warn">⚠ 물류센터 입고 완료 후 환불 진행 / 왕복 배송비 6,000원 고객 부담 안내 필수</div>
       </div>
       <div class="flow-case" id="cafe24-refund">
         <div class="steps">
-          <div class="step gray" data-sid="c24rf1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 문의 접수</div><div class="step-desc">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
-          <div class="step coral" data-sid="c24rf2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">환불 조건 확인</div><div class="step-desc">100% 환불 규정 충족 여부 확인 → 템플릿 D-01 참고</div></div></div>
-          <div class="step coral" data-sid="c24rf3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">이지어드민에서 회수 신청</div><div class="step-desc">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
-          <div class="step teal" data-sid="c24rf4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 환불 내용 전달</div><div class="step-desc">주문번호 / 고객명 / 환불 금액 / 사유 전달</div></div></div>
-          <div class="step gray" data-sid="c24rf5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">환불 예정 안내 → 템플릿 D-03 사용</div></div></div>
+          <div class="step gray" data-sid="c24rf1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 관리자 › 고객문의 탭에서 내용 확인</div></div></div>
+          <div class="step coral" data-sid="c24rf2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">환불 조건 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">100% 환불 규정 충족 여부 확인 → 템플릿 D-01 참고</div></div></div>
+          <div class="step coral" data-sid="c24rf3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">이지어드민에서 회수 신청</div><div class="step-desc" contenteditable="true" spellcheck="false">이지어드민 › 회수 신청 후 회수 송장 등록</div></div></div>
+          <div class="step teal" data-sid="c24rf4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 환불 내용 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 / 고객명 / 환불 금액 / 사유 전달</div></div></div>
+          <div class="step gray" data-sid="c24rf5"><div class="step-spine"><div class="step-num">5</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 예정 안내 → 템플릿 D-03 사용</div></div></div>
         </div>
         <div class="callout warn">⚠ 입고 확인 전 환불 처리 금지 / 영업일 기준 3~5일 소요 안내</div>
       </div>
       <div class="flow-case" id="cafe24-inq">
         <div class="steps">
-          <div class="step gray" data-sid="c24iq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악</div><div class="step-desc">답변 템플릿 메뉴에서 해당 유형 검색</div></div></div>
-          <div class="step blue" data-sid="c24iq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">답변 템플릿 복붙</div><div class="step-desc">[ ] 표시된 부분만 수정 후 발송</div></div></div>
+          <div class="step gray" data-sid="c24iq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿 메뉴에서 해당 유형 검색</div></div></div>
+          <div class="step blue" data-sid="c24iq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">답변 템플릿 복붙</div><div class="step-desc" contenteditable="true" spellcheck="false">[ ] 표시된 부분만 수정 후 발송</div></div></div>
         </div>
       </div>
     </div>
@@ -279,16 +281,16 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
       </div>
       <div class="flow-case active" id="naver-cancel">
         <div class="steps">
-          <div class="step gray" data-sid="nvca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">스마트스토어 판매자센터 › 문의/리뷰 탭 확인</div></div></div>
-          <div class="step blue" data-sid="nvca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·반품 처리</div><div class="step-desc">판매자센터 › 취소/반품 관리에서 승인</div></div></div>
-          <div class="step teal" data-sid="nvca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달 (카페24와 동일 양식)</div></div></div>
-          <div class="step gray" data-sid="nvca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+          <div class="step gray" data-sid="nvca1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">스마트스토어 판매자센터 › 문의/리뷰 탭 확인</div></div></div>
+          <div class="step blue" data-sid="nvca2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·반품 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">판매자센터 › 취소/반품 관리에서 승인</div></div></div>
+          <div class="step teal" data-sid="nvca3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달 (카페24와 동일 양식)</div></div></div>
+          <div class="step gray" data-sid="nvca4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
         </div>
       </div>
       <div class="flow-case" id="naver-inq">
         <div class="steps">
-          <div class="step gray" data-sid="nviq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악</div><div class="step-desc">답변 템플릿 메뉴에서 유형 검색</div></div></div>
-          <div class="step blue" data-sid="nviq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">답변 복붙</div><div class="step-desc">[ ] 표시 부분만 수정 후 발송</div></div></div>
+          <div class="step gray" data-sid="nviq1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿 메뉴에서 유형 검색</div></div></div>
+          <div class="step blue" data-sid="nviq2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">답변 복붙</div><div class="step-desc" contenteditable="true" spellcheck="false">[ ] 표시 부분만 수정 후 발송</div></div></div>
         </div>
       </div>
     </div>
@@ -296,36 +298,36 @@ body{font-family:'Apple SD Gothic Neo','Pretendard','Noto Sans KR',sans-serif;ba
     <div class="flow-panel" id="fp-naverpay">
       <div class="callout info" style="margin-bottom:16px">스마트스토어와 별도 채널 — 네이버 판매자센터 › 정산/결제 메뉴에서 처리</div>
       <div class="steps">
-        <div class="step gray" data-sid="np1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">네이버 판매자센터 › 네이버페이 문의 탭</div></div></div>
-        <div class="step blue" data-sid="np2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">결제·환불 처리</div><div class="step-desc">세부 플로우 추후 작성 예정</div></div></div>
-        <div class="step teal" data-sid="np3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달</div></div></div>
-        <div class="step gray" data-sid="np4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+        <div class="step gray" data-sid="np1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">네이버 판매자센터 › 네이버페이 문의 탭</div></div></div>
+        <div class="step blue" data-sid="np2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">결제·환불 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">세부 플로우 추후 작성 예정</div></div></div>
+        <div class="step teal" data-sid="np3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달</div></div></div>
+        <div class="step gray" data-sid="np4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
       </div>
     </div>
 
     <div class="flow-panel" id="fp-coupang">
       <div class="callout info" style="margin-bottom:16px">쿠팡 Wing 판매자 센터에서 처리 — 세부 플로우 추후 작성 예정</div>
       <div class="steps">
-        <div class="step gray" data-sid="cp1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">쿠팡 Wing › 고객문의 탭 확인</div></div></div>
-        <div class="step blue" data-sid="cp2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·반품·환불 처리</div><div class="step-desc">세부 플로우 추후 작성 예정</div></div></div>
-        <div class="step teal" data-sid="cp3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">경영지원팀 전달</div><div class="step-desc">환불 내용 전달</div></div></div>
-        <div class="step gray" data-sid="cp4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">고객 답변</div><div class="step-desc">해당 템플릿 사용</div></div></div>
+        <div class="step gray" data-sid="cp1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">쿠팡 Wing › 고객문의 탭 확인</div></div></div>
+        <div class="step blue" data-sid="cp2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·반품·환불 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">세부 플로우 추후 작성 예정</div></div></div>
+        <div class="step teal" data-sid="cp3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">경영지원팀 전달</div><div class="step-desc" contenteditable="true" spellcheck="false">환불 내용 전달</div></div></div>
+        <div class="step gray" data-sid="cp4"><div class="step-spine"><div class="step-num">4</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">고객 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">해당 템플릿 사용</div></div></div>
       </div>
     </div>
 
     <div class="flow-panel" id="fp-kakao">
       <div class="steps">
-        <div class="step gray" data-sid="kk1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 접수</div><div class="step-desc">카카오 비즈니스 채널 › 채팅 탭 확인</div></div></div>
-        <div class="step blue" data-sid="kk2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">문의 유형 파악 후 답변</div><div class="step-desc">답변 템플릿에서 유형 검색 후 복붙</div></div></div>
-        <div class="step amber" data-sid="kk3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">취소·환불 필요 시</div><div class="step-desc">카페24 또는 해당 채널 플로우로 이관</div></div></div>
+        <div class="step gray" data-sid="kk1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 접수</div><div class="step-desc" contenteditable="true" spellcheck="false">카카오 비즈니스 채널 › 채팅 탭 확인</div></div></div>
+        <div class="step blue" data-sid="kk2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">문의 유형 파악 후 답변</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 템플릿에서 유형 검색 후 복붙</div></div></div>
+        <div class="step amber" data-sid="kk3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">취소·환불 필요 시</div><div class="step-desc" contenteditable="true" spellcheck="false">카페24 또는 해당 채널 플로우로 이관</div></div></div>
       </div>
     </div>
 
     <div class="flow-panel" id="fp-phone">
       <div class="steps">
-        <div class="step gray" data-sid="ph1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">성함 / 번호 / 문의내용 확인</div><div class="step-desc">답변 어려운 경우 콜백 안내 후 내부 확인</div></div></div>
-        <div class="step blue" data-sid="ph2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">즉시 답변 or 확인 후 콜백</div><div class="step-desc">사용법·제품 관련 → 즉시 / 환불·취소 → 확인 후 콜백</div></div></div>
-        <div class="step teal" data-sid="ph3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label">해당 채널 플로우로 처리</div><div class="step-desc">주문번호 확인 후 카페24 또는 해당 채널에서 처리</div></div></div>
+        <div class="step gray" data-sid="ph1"><div class="step-spine"><div class="step-num">1</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">성함 / 번호 / 문의내용 확인</div><div class="step-desc" contenteditable="true" spellcheck="false">답변 어려운 경우 콜백 안내 후 내부 확인</div></div></div>
+        <div class="step blue" data-sid="ph2"><div class="step-spine"><div class="step-num">2</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">즉시 답변 or 확인 후 콜백</div><div class="step-desc" contenteditable="true" spellcheck="false">사용법·제품 관련 → 즉시 / 환불·취소 → 확인 후 콜백</div></div></div>
+        <div class="step teal" data-sid="ph3"><div class="step-spine"><div class="step-num">3</div><div class="step-line"></div></div><div class="step-body"><div class="step-label" contenteditable="true" spellcheck="false">해당 채널 플로우로 처리</div><div class="step-desc" contenteditable="true" spellcheck="false">주문번호 확인 후 카페24 또는 해당 채널에서 처리</div></div></div>
       </div>
     </div>
   </div>
@@ -741,7 +743,30 @@ function initAllEditors(){
 function openSb(){document.getElementById('sidebar').classList.add('open');document.getElementById('sbo').classList.add('open')}
 function closeSb(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbo').classList.remove('open')}
 
-openDB().then(()=>{renderTmpl(T);initAllEditors();});
+openDB().then(()=>{
+  renderTmpl(T);
+  initAllEditors();
+  initEditableSteps();
+});
+
+function initEditableSteps(){
+  // load saved step text
+  document.querySelectorAll('.step-label[contenteditable], .step-desc[contenteditable]').forEach(el=>{
+    const sid = el.closest('[data-sid]')?.dataset.sid;
+    if(!sid) return;
+    const role = el.classList.contains('step-label') ? 'label' : 'desc';
+    const key = 'st:'+sid+':'+role;
+    dbGet(key).then(val=>{ if(val) el.textContent=val; });
+    el.addEventListener('input',()=>{
+      clearTimeout(el._t);
+      el._t=setTimeout(()=>dbSet(key, el.textContent), 500);
+    });
+    // prevent enter key from adding newline
+    el.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){e.preventDefault();el.blur();}
+    });
+  });
+}
 </script>
 </body>
 </html>
